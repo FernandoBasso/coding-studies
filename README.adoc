@@ -1,0 +1,21 @@
+= coding Studies
+:page-tags: code src programming
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:toc: left
+:source-highlighter: highlight.js
+:stem: latexmath
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== Intro
+
+This is a place where I keep pieces of code, algorithm solutions and code examples in general.
