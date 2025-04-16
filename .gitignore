@@ -1,0 +1,4 @@
+##
+# Ignore files in dist/ directories.
+#
+dist
