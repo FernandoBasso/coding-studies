@@ -1,0 +1,45 @@
+#
+# Take a look at .env-example and follow the instruction
+# in that file.
+#
+
+services:
+  ##
+  # Assuming we have a role called ‘blog’, and a database also
+  # called ‘blog’ and which belongs to the role ‘blog’, then we'll
+  # be able to shell into this container with something like this:
+  #
+  #   $ docker exec -it postgresql-playground /bin/bash
+  #
+  # And from there into psql CLI with:
+  #
+  #   # psql -U blog -d blog
+  #
+  # Or directly from the host system shell into psql with:
+  #
+  #   $ docker exec -it postgresql-playground psql -U blog -d blog
+  #
+  db:
+    image: postgres:17
+    container_name: pg_studies
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - "pg_studies_db_data:/var/lib/postgresql/data"
+      - "./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "./dbdumps/:/dbdumps"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: 'pgadmin'
+    env_file: .env
+    ports:
+      ##
+      # http://localhost:8000
+      #
+      - "8000:80"
+
+volumes:
+  pg_studies_db_data:
