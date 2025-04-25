@@ -2,3 +2,13 @@
 # Ignore files in dist/ directories.
 #
 dist
+
+##
+# Env files.
+#
+.env
+
+##
+# macOS stuff.
+#
+.DS_Store
