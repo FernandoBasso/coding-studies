@@ -1,0 +1,18 @@
+body {
+  font-family: Ubuntu, 'PT Mono';
+  background-color: #fbfadf;
+}
+
+code:not(pre *) {
+  border: 1px solid #ccc;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+pre {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 6px;
+  font-size: 16px;
+}
