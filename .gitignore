@@ -12,3 +12,9 @@ dist
 # macOS stuff.
 #
 .DS_Store
+
+##
+# Emacs temporary and backup files.
+#
+\.\#*
+\#*\#
