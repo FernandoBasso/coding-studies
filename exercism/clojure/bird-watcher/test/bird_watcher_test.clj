@@ -49,6 +49,14 @@
   (testing "Odd week for week matching odd pattern"
     (is (= true (bird-watcher/odd-week? [1 0 1 0 1 0 1])))))
 
+(deftest ^{:task 7} odd-week-matching-test
+  (testing "Odd week for week matching odd pattern"
+    (is (= true (bird-watcher/odd-week? [0 1 0 1 0 1 0])))))
+
 (deftest ^{:task 7} odd-week-not-matching-test
   (testing "Odd week for week that does not match pattern"
     (is (= false (bird-watcher/odd-week? [2 2 1 0 1 1 1])))))
+
+(deftest ^{:task 8} odd-week-not-matching-test-with-alternate-not-0-1
+  (testing "Odd week with non 0 and 1 but alternating anyway"
+    (is (= false (bird-watcher/odd-week? [2 1 2 1 2 1 2])))))
