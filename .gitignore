@@ -31,3 +31,7 @@ maven-classpath
 maven-classpath.properties
 .idea/
 *.iml
+.clj-kondo
+.cpcache
+.lsp
+.lein-repl-history
