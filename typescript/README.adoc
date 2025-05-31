@@ -1,0 +1,20 @@
+= Decorators
+
+== Running Examples in This Project
+
+Original scripts on package.json:
+
+----
+"scripts": {
+  "start": "parcel index.html --open",
+  "build": "parcel build index.html"
+},
+----
+
+Point script to different index.file in index.html to try
+different stuff.
+
+== Resources 
+
+* https://github.com/wycats/javascript-decorators
+* https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841
