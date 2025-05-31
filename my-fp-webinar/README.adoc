@@ -1,0 +1,5 @@
+= Webinar Functional Programming in EcmaScript
+
+This is set of demo funcionality I use to talk about and demonstrate functional programming in both a conceptual and practical fashion using JavaScript.
+
+The approach is simple: tackle somewhat simple but real tasks and code them in a functional style while explaining both the concepts and showing it in practice.
