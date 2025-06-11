@@ -1,0 +1,26 @@
+= Algorithms (Part I)
+:page-tags: algorithm data-structure dsa
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:toc: left
+:source-highlighter: highlight.js
+:stem: latexmath
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+
+== Algorithms, Part I
+
+By Robert Sedgewick and Kevin Wayne.
+
+Free on Coursera.
+
+https://www.coursera.org/learn/algorithms-part1
