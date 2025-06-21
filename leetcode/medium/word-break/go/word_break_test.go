@@ -1,4 +1,4 @@
-package word_break
+package wordbreak
 
 import (
 	"testing"
@@ -40,6 +40,14 @@ func TestWordBreak(t *testing.T) {
 
 		t.Run("not found", func(t *testing.T) {
 			require.False(t, WordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"}))
+		})
+
+		t.Run("expensive input", func(t *testing.T) {
+			require.True(
+				t,
+				WordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+					[]string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"},
+				))
 		})
 	})
 }

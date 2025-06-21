@@ -1,7 +1,7 @@
-package word_break
+// Package wordbreak implements the word break algorithm solution.
+package wordbreak
 
 import (
-	"fmt"
 	"slices"
 )
 
@@ -18,13 +18,12 @@ func IsPalindrome(str string) bool {
 }
 
 func WordBreak(str string, words []string) bool {
-	return WordBreakRec(0, str, words)
+	return WordBreakRec(str, 0, words)
 }
 
-func WordBreakRec(i int, str string, words []string) bool {
-	strLen := len(str)
+func WordBreakRec(s string, i int, words []string) bool {
+	strLen := len(s)
 
-	fmt.Printf("%#v, %#v\n", i, strLen)
 	if i == strLen {
 		return true
 	}
@@ -32,7 +31,8 @@ func WordBreakRec(i int, str string, words []string) bool {
 	prefix := ""
 
 	for j := i; j < strLen; j++ {
-		if slices.Contains(words, prefix) && WordBreakRec(i+1, str, words) {
+		prefix += string(s[j])
+		if slices.Contains(words, prefix) && WordBreakRec(s, j+1, words) {
 			return true
 		}
 	}
