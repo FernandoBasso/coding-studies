@@ -6,12 +6,10 @@ def word_break_rec(s, i, words):
   prefix = ""
 
   for j in range(i, n):
+    print(j, i)
     prefix += s[j]
-    print('n: %d, i: %d, j: %d, s[%d]: %s, prefix: %s' % (n, i, j, j, s[j],
-                                                          prefix))
 
     if prefix in words and word_break_rec(s, j + 1, words) == 1:
-      print('returning')
       return 1
 
   return 0
@@ -21,11 +19,11 @@ def word_break(s, words):
 
 print(__name__)
 if __name__ == '__main__':
-  # words = {'i', 'like', 'dsa'}
-  # print(word_break('dsadsa', words))
+  words = {'i', 'like', 'dsa'}
+  print(word_break('dsadsa', words))
   # print(word_break('idsalike', words))
-  s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab'
-  words = {'a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaa'},
+  # s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab'
+  # words = {'a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaa'},
   print(word_break(s, words))
 
 # print(word_break('idsa', words))

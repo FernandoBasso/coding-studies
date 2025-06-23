@@ -1,37 +1,43 @@
 ##
-# Ignore files in dist/ directories.
+# Node.js.
+#
+node_modules
+
+##
+# Transpiled JavaScript files.
 #
 dist
 
 ##
-# Env files.
+# Xournal++.
 #
-.env
+*.xopp
 
 ##
-# macOS stuff.
+# Jest.
 #
-.DS_Store
+coverage
 
 ##
-# Emacs temporary and backup files.
+# Asciidoctor.
 #
-\.\#*
-\#*\#
+*.html
+*.pdf
 
 ##
-# Clojure.
+# Emacs.
 #
-*.jar
-target
-clojure.iws
-clojure.ipr
-nbproject/private/
-maven-classpath
-maven-classpath.properties
-.idea/
-*.iml
+\#*
+
+##
+# Java & Clojure.
+#
 .clj-kondo
 .cpcache
+target
+
+
+##
+# Language Server Protocol.
+#
 .lsp
-.lein-repl-history
