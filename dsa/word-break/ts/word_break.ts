@@ -12,7 +12,6 @@ function wordBreakR(
 
   for (let j = idx; j <= n; ++j) {
     prefix += str[j];
-    log({ j, idx, n, prefix, words });
 
     if (words.includes(prefix) && wordBreakR(str, j + 1, words))
       return true;
