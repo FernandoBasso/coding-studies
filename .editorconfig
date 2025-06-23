@@ -15,6 +15,9 @@ trim_trailing_whitespace = false
 [*.html]
 max_line_length = 0
 
+[*.{py}]
+indent_size = 4
+
 ##
 # I use hard tabs for bash scripts because of the ‘<<-EOF’ syntax
 # which removes tabs from HEREDOCS allowing EOF delimiters to be

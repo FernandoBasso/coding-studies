@@ -4,6 +4,12 @@
 node_modules
 
 ##
+# Python.
+#
+__pycache__
+*.pyc
+
+##
 # Transpiled JavaScript files.
 #
 dist
@@ -35,7 +41,6 @@ coverage
 .clj-kondo
 .cpcache
 target
-
 
 ##
 # Language Server Protocol.
