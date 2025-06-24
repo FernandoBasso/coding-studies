@@ -1,16 +1,13 @@
-import { log, len } from "../../libts";
-
 function wordBreakR(
   str: string,
   idx: number,
   words: Array<string>,
 ): boolean {
-  if (len(str) === idx) return true;
+  if (str.length === idx) return true;
 
-  const n = len(str);
   let prefix = "";
 
-  for (let j = idx; j <= n; ++j) {
+  for (let j = idx; j <= str.length; ++j) {
     prefix += str[j];
 
     if (words.includes(prefix) && wordBreakR(str, j + 1, words))

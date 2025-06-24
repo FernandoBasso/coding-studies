@@ -1,4 +1,4 @@
-import { wordBreak } from "./word_break";
+import { wordBreak } from "./word_break_v1";
 
 describe("wordBreak()", () => {
   it("simple case 1", () => {
@@ -15,10 +15,38 @@ describe("wordBreak()", () => {
     ).toBe(false);
   });
 
-  it.skip("expensive input", () => {
+  ////
+  // Takes forever if the solution doesn't use a good
+  // dynamic programming approach for optimization.
+  //
+  it("false expensive input", () => {
     expect(
       wordBreak(
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa",
+          "aaaaa",
+          "aaaaaa",
+          "aaaaaaa",
+          "aaaaaaaa",
+          "aaaaaaaaa",
+          "aaaaaaaaaa",
+        ],
+      ),
+    ).toBe(false);
+  });
+
+  ////
+  // Takes forever if the solution doesn't use a good
+  // dynamic programming approach for optimization.
+  //
+  it("true expensive input", () => {
+    expect(
+      wordBreak(
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         [
           "a",
           "aa",
