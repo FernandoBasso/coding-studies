@@ -1,33 +1,16 @@
-def word_break_rec(s, i, words):
-    if i == len(s):
-        return 1
-
+def word_break(s: str, words: set[str]) -> bool:
     n = len(s)
-    prefix = ''
+    max_len = max(len(word) for word in words) if words else 0
 
-    for j in range(i, n):
-        prefix += s[j]
+    memo = [False] * (n + 1)
+    memo[0] = True
 
-        if prefix in words and word_break_rec(s, j + 1, words) == 1:
-            return 1
+    for i in range(1, n + 1):
+        ini = max(0, i - max_len)
+        for j in range(i - 1, ini - 1, -1):
+            seg = s[j:i]
+            if memo[j] and seg in words:
+                memo[i] = True
+                break
 
-    return 0
-
-
-def word_break(s, words):
-    return word_break_rec(s, 0, words)
-
-
-if __name__ == '__main__':
-    words = {'i', 'like', 'dsa'}
-    print(word_break('dsadsa', words))
-    # print(word_break('idsalike', words))
-    # s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab'
-    # words = {'a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaa'},
-    # print(word_break(s, words))
-
-# print(word_break('idsa', words))
-#
-# print(word_break('dsai', words))
-#
-# print(word_break('dsalike', words))
+    return memo[n]
