@@ -1,25 +1,16 @@
-import { log, len } from "../../libts";
-
-function wordBreakR(
-  str: string,
-  idx: number,
-  words: Array<string>,
-): boolean {
-  if (len(str) === idx) return true;
-
-  const n = len(str);
-  let prefix = "";
-
-  for (let j = idx; j <= n; ++j) {
-    prefix += str[j];
-
-    if (words.includes(prefix) && wordBreakR(str, j + 1, words))
-      return true;
-  }
-
-  return false;
-}
+import { log, len, max } from "../../libts";
 
 export function wordBreak(str: string, words: Array<string>): boolean {
-  return wordBreakR(str, 0, words);
+  const n: number = len(str);
+  let maxLen: number = 0;
+
+  for (const word of words) {
+    maxLen = max(maxLen, len(word));
+  }
+
+  log(maxLen);
+
+  return !!0;
 }
+
+wordBreak("helloworld", ["a", "you", "Yoda", "go"]);
