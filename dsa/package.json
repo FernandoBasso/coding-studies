@@ -2,7 +2,7 @@
   "name": "dsa-ts",
   "version": "0.0.1",
   "scripts": {
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose --testMatch '**/*.spec.ts'",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose",
     "test:unit": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose --coverage --testMatch '**/*.spec.ts'",
     "test:integration": "NODE_OPTIONS='--experimental-vm-modules' jest --verbose --coverage --testMatch '**/*.test.ts'",
     "test:all": "npm run test:unit && npm run test:integration",
