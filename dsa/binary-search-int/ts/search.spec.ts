@@ -1,4 +1,4 @@
-import { search } from "./search";
+import { search } from "./search_v1";
 
 describe("Binary Search", () => {
   it("should find nothing if input is empty", () => {

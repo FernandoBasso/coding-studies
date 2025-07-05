@@ -2,19 +2,20 @@
 // algorithm to search for an int.
 package binarysearchint
 
-func Search(needle int, haystack []int) bool {
-	var lo = 0
-	var hi = len(haystack)
+// Search performs a binary search of x in xs.
+func Search(x int, xs []int) bool {
+	lo := 0
+	hi := len(xs)
 	var mid int
 	var val int
 
 	for lo < hi {
 		mid = lo + (hi-lo)/2
-		val = haystack[mid]
+		val = xs[mid]
 
-		if needle == val {
+		if x == val {
 			return true
-		} else if needle < val {
+		} else if x < val {
 			hi = mid
 		} else {
 			lo = mid + 1
