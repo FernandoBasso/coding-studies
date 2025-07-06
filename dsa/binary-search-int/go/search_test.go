@@ -1,9 +1,10 @@
-package binarysearchint
+package binarysearchint_test
 
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	bsi "dsago/binary-search-int/go/v2"
+	"github.com/stretchr/testify/require"
 )
 
 func TestBinarySearch(t *testing.T) {
@@ -65,7 +66,7 @@ func TestBinarySearch(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equal(t, tt.expected, Search(tt.target, tt.nums))
+			require.Equal(t, tt.expected, bsi.Search(tt.target, tt.nums))
 		})
 	}
 }

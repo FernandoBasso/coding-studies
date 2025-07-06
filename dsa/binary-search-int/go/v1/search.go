@@ -1,6 +1,6 @@
-// Package binarysearchint implements a binary search
+// Package binarysearchintv1 implements a binary search
 // algorithm to search for an int.
-package binarysearchint
+package binarysearchintv1
 
 // Search performs a binary search of x in xs.
 func Search(x int, xs []int) bool {

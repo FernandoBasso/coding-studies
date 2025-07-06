@@ -1,4 +1,4 @@
-module main
+module dsago
 
 go 1.24.4
 
