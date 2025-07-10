@@ -11,12 +11,8 @@ export function twoCrystalBalls(floors: Array<boolean>): number {
         jumpSize = floor(sqrt(floors.length));
   let i = 0;
 
-  while (1) {
-    i = ((i + jumpSize) >= len)
-      ? i = len
-      : i + jumpSize;
-
-    if (i === len || floors[i])
+  for (; i < len; i += jumpSize) {
+    if (floors[i])
       break;
   }
 

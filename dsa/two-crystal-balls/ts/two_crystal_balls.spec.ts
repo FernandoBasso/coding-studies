@@ -1,4 +1,4 @@
-import { twoCrystalBalls } from "./two_crystal_balls_v1";
+import { twoCrystalBalls } from "./two_crystal_balls_v2";
 
 describe("two crystal balls", () => {
   it("no floor causes the ball to break", function () {
