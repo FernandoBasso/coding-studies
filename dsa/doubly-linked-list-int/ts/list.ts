@@ -36,8 +36,7 @@ export class List<T> {
       const currTail = this.tail;
       newNode.prev = currTail;
       this.tail = newNode;
-
-      // this.head.next = newNode;
+      this.head!.next = newNode;
     }
   }
 }

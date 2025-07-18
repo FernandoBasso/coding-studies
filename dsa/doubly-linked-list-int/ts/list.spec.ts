@@ -51,5 +51,16 @@ describe("List", () => {
       expect(list.tail!.prev).toEqual(prevTail);
       expect(list.head!.next).toEqual(newTail);
     });
+
+    it("to a list containing a few nodes already", () => {
+      const list: List<number> = new List<number>(0);
+      list.append(1);
+      list.append(2);
+      list.append(3);
+
+      expect(list.tail!.data).toEqual(3);
+      expect(list.tail!.next).toBeNull();
+      expect(list.tail!.prev!.data).toEqual(2)
+    });
   });
 });
