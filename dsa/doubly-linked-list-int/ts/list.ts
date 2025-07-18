@@ -21,4 +21,23 @@ export class List<T> {
       this.tail = node;
     }
   }
+
+  /**
+   * Appends an element to the tail of the list, making the new element
+   * become the new tail.
+   */
+  public append(data: T): void {
+    const newNode = new Node(data);
+
+    if (isNil(this.tail)) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      const currTail = this.tail;
+      newNode.prev = currTail;
+      this.tail = newNode;
+
+      // this.head.next = newNode;
+    }
+  }
 }

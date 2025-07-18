@@ -1,10 +1,10 @@
 export class Node<T> {
-  public val: T;
-  public next: T | null;
-  public prev: T | null;
+  public data: T;
+  public next: Node<T> | null;
+  public prev: Node<T> | null;
 
   constructor(v: T) {
-    this.val = v;
+    this.data = v;
     this.next = null;
     this.prev = null;
   }
