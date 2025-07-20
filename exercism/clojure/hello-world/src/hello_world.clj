@@ -1,4 +1,6 @@
 (ns hello-world)
 
-(defn hello []
+(defn hello
+  "Returns the classic “hello world” message"
+  []
   "Hello, World!")
