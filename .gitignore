@@ -39,6 +39,7 @@ coverage
 # Emacs.
 #
 \#*
+.#.*
 
 ##
 # Java & Clojure.
