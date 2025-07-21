@@ -47,6 +47,7 @@ coverage
 .clj-kondo
 .cpcache
 target
+.nrepl-port
 
 ##
 # Language Server Protocol.
