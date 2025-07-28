@@ -6,27 +6,23 @@
 
 (ns armstrong-numbers)
 
+(defn pow
+  "Raises the base b to the exponent e."
+  [e b]
+  (apply * (repeat e b)))
+
 (defn to-digits
-  "to-digits :: Num -> Vector<Num>
-
-   Turns an integer like 123 into a vector of the digits [1 2 3]."
-  [n vod]
-
-  (if (< n 10)
-    (apply vector n vod)
-    (recur
-     (quot n 10)
-     (apply vector (mod n 10) vod))))
+  "Returns a vector of each digit in num in reverse order."
+  [num]
+  (->> num
+       (iterate #(quot % 10))
+       (take-while pos?)
+       (map #(rem % 10))))
 
 (defn armstrong?
-  "armstrong? :: Long -> Bool
-
-   Returns a boolean indicating whether the given number
-   is an Armstrong number."
   [num]
-  (let [digits (to-digits num [])]
+  (let [digits (to-digits num)]
     (->> digits
-         (map #(.pow (bigdec %) (count digits)))
-         (reduce +)
-         (== num))))
-
+         (map (partial pow (count digits)))
+         (apply +)
+         (= num))))
