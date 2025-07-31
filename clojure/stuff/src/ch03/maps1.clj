@@ -84,3 +84,26 @@
 ;;
 ((get ops :sub) 5 3)
 ;=> 2
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Missing keys and nil
+;;
+
+;;;;
+;; A key that does not exist DOES NOT produce an error, but simply
+;; returns nil.
+;;
+(def m {:x 1})
+
+(m :x)
+;=> 1
+
+(m :y)
+;=> nil
+
+(get m :x)
+;=> 1
+
+(get m :y)
+;=> nil
