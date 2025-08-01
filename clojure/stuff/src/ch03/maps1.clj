@@ -36,6 +36,16 @@
 ((get jedi :name) :last)
 ;=> "Secura"
 
+;;;;
+;; Using the get-in function.
+;;
+(get-in jedi [:name :first])
+;=> "Aayla"
+
+(get-in jedi [:name :last])
+;=> "Secura"
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Types that can be used as keys.
@@ -107,3 +117,30 @@
 
 (get m :y)
 ;=> nil
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Default values for missing keys
+;;
+
+;;;;
+;; The m map defined earlier does not have an :y key. Let's make it
+;; return 2 as default instead of nil.
+;;
+(get m :y 2)
+;=> 2
+
+;;;;
+;; Or with the map itself acting as a function.
+;;
+(m :y 2)
+;=> 2
+
+(+ (m :x) (m :y))
+
+
+(+ (m :x) (m :y 2))
+;=> 3
+
+
+
