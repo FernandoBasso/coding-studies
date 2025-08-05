@@ -75,3 +75,24 @@
 ;;  {:name "left-achilles", :size 1}
 ;;  {:name "right-foot", :size 2}
 ;;  {:name "left-foot", :size 2}]
+
+(defn hit
+  "Determines which body part is hit."
+  [asym-body-parts]
+  (let [sym-parts (symetryze-body-parts asym-body-parts)
+        body-part-size-sum (reduce + (map :size sym-parts))
+        target (rand body-part-size-sum)]
+    (loop [[part & remaining-parts] sym-parts
+           accumulated-size (:size part)]
+      (if (> accumulated-size target)
+        part
+        (recur
+         remaining-parts
+         (+ accumulated-size (:size (first remaining-parts))))))))
+
+
+(hit asym-hobbit-body-parts)
+;=> {:name "left-forearm", :size 3}
+
+(hit asym-hobbit-body-parts)
+;=> {:name "abdomen", :size 6}
