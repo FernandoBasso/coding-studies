@@ -67,12 +67,30 @@ uniq
 
 (def dec1 (dec-maker 1))
 (dec1 10)
-;=> 9
+;;=> 9
 
 (def dec25 (dec-maker 25))
 (dec25 100)
-;=> 75
+;;=> 75
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 4 mapset
+;;
+(defn mapset
+  "Maps f over the values xs and and dedups values."
+  [f xs]
+  (loop [res #{} ys xs]
+    (if (empty? ys)
+      res
+      (recur
+       (conj res (f (first ys)))
+       (rest ys)))))
 
+(mapset inc [1 1 1])
+;;=> #{2}
 
+(mapset dec [20 20 10 10])
+;;=> #{19 9}
 
+(mapset #(- % 5) [105 5 105 5])
+;;=> #{0 100}
