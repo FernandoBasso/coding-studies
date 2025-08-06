@@ -2,7 +2,8 @@
 ;;; Exercises from chapter 3.
 ;;;
 
-(ns ex)
+(ns ch03.exercises
+  (:require [clojure.string :refer [join replace split]]))
 
 ;;;;
 ;; 1 str
@@ -35,3 +36,23 @@
 (def uniq (hash-set 1 1 :nodups :nodups))
 uniq
 ;=> #{1 :nodups}
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 2 add 100
+;;
+(defn add100
+  "Add 100 to the number given."
+  [x]
+  (+ x 100))
+
+(add100 0)
+;=> 100
+
+(add100 -100)
+;=> 0;
+
+(add100 1)
+;=> 101
+
