@@ -43,7 +43,7 @@
           []
           asym-body-parts))
 
-(symetryze-body-parts asym-hobbit-body-parts)
+(symmetryze-body-parts asym-hobbit-body-parts)
 ;; [{:name "head", :size 3}
 ;;  {:name "left-eye", :size 1}
 ;;  {:name "right-eye", :size 1}
@@ -79,7 +79,7 @@
 (defn hit
   "Determines which body part is hit."
   [asym-body-parts]
-  (let [sym-parts (symetryze-body-parts asym-body-parts)
+  (let [sym-parts (symmetryze-body-parts asym-body-parts)
         body-part-size-sum (reduce + (map :size sym-parts))
         target (rand body-part-size-sum)]
     (loop [[part & remaining-parts] sym-parts

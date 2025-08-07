@@ -33,7 +33,7 @@
 (matching-part (asym-hobbit-body-parts 10))
 ;=> {:name "right-forearm", :size 3}
 
-(defn symetryze-body-parts
+(defn symmetryze-body-parts
   "Adds the right- body parts for each left- one. Expects a seq of maps
   that have a :name and a :size."
   [asym-body-parts]
@@ -44,7 +44,7 @@
       (let [[part & remaining] remaining-asym-parts]
         (recur remaining
                (into final-body-parts
-                     (set [part (matching-part part)]))))))))
+                     (set [part (matching-part part)])))))))
 
 ;;
 ;; (into final-body-parts
@@ -61,7 +61,7 @@
 ;; This will add create the right- side of the corresponding left- side
 ;; body parts.
 ;;
-(symetryze-body-parts asym-hobbit-body-parts)
+(symmetryze-body-parts asym-hobbit-body-parts)
 ;=> [{:name "head", :size 3}
 ;=>  {:name "left-eye", :size 1}
 ;=>  {:name "right-eye", :size 1}
