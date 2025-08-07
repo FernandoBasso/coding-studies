@@ -1,5 +1,5 @@
 //
-// tags: map first car rest cons data-structure collection sequence
+// tags: map linked-list first rest cons
 //
 
 var log = console.log.bind(console);
@@ -65,25 +65,25 @@ var node0 = cons("new first", node1);
 log(first(node0));
 // new first
 
-var map = function map(list, f) {
+var map = function map(f, list) {
   return list === null
     ? null
-    : cons(f(first(list)), map(rest(list), f));
+    : cons(f(first(list)), map(f, rest(list)));
 }
 
 console.log("\n## mapped\n");
 
 var res1 = map(
-  node1,
-  function f(val) { return val + "-mapped"; }
+  function f(val) { return val + "-mapped"; },
+  node1
 );
 
 log(first(res1));
 // first-mapped
 
 var res2 = map(
-  node1,
-  function f(val) { return val + "-mapped"; }
+  function f(val) { return val + "-mapped"; },
+  node1
 );
 
 log(first(rest(res2)));
@@ -91,4 +91,11 @@ log(first(rest(res2)));
 
 log(first(rest(rest(res2))));
 // last-mapped
+
+
+//
+// Because map works in terms of first, rest and cons, we can
+// map over any data structure that supports those three operations.
+//
+
 
