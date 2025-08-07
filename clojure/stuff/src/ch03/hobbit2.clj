@@ -33,7 +33,7 @@
 (matching-part (asym-hobbit-body-parts 10))
 ;=> {:name "right-forearm", :size 3}
 
-(defn symetryze-body-parts
+(defn symmetryze-body-parts
   "Adds the right- body parts for each left- one. Expects a seq of maps
   that have a :name and a :size."
   [asym-body-parts]
