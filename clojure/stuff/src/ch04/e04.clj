@@ -23,7 +23,7 @@
 ;;=> clojure.lang.PersistentVector$ChunkedSeq
 
 ;;;;
-;; Set as input.
+;; Hash Set as input.
 ;;
 (seq #{1 "two" 'III})
 ;;=> (III 1 "two")
@@ -39,3 +39,19 @@
 ;; data structure (which is just a vector of two elements).
 ;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Convert seq back into some other type.
+;;
+
+(type (into '() (seq '(1 two III))))
+;;=> clojure.lang.PersistentList
+
+(type (into [] (seq [1 "two" 'III])))
+;;=> clojure.lang.PersistentVector
+
+(type (into #{} (seq #{1 "two" 'III})))
+;;=> clojure.lang.PersistentHashSet
+
+(type (into {} (seq {:one 1 :two 'II})))
+;;=> clojure.lang.PersistentArrayMap
