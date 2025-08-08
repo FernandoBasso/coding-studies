@@ -1,4 +1,4 @@
-(ns ch04.e04)
+(ns ch04.e04-seq)
 
 ;;
 ;; seq always returns a value that looks and behaves like a list.
