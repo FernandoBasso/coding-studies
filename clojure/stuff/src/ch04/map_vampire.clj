@@ -1,4 +1,4 @@
-(ns ch04.e06-map-vampire)
+(ns ch04.map-vampire)
 
 (defn unify-diet-data
   "Returns a hash-map of matching values of collections."
