@@ -1,4 +1,4 @@
-(ns nubank.01.entity-nesting)
+(ns nubank.entity-nesting)
 
 (def customer-1
   {:id "12345"
