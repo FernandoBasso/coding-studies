@@ -1,17 +1,7 @@
-(ns fns)
+(ns fns1)
 
-(def m {:x 1})
+(val (first {:x 1 :y 2}))
+;;=> 1
 
-(+ (m :x) (m :y))
-; Cannot invoke "Object.getClass()" because "x" is null
-
-(def jedi
-  {:name
-   {:first "Asoka"
-    :last "Tano"}
-   :skill "The Force"
-   :power 100})
-
-(get-in jedi [:name :firt])
-;=> nil
-
+(key (first (rest {:x 10 :y 2})))
+;;=> :y
