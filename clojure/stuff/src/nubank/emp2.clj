@@ -106,8 +106,41 @@
 (-> aayla
     :hired-at)
 
+;;;;
+;; Aayla does not have :hired-at, so trying to .getTime on :hired-at will
+;; cause an exception.
+;;
 ;;(-> aayla
 ;;    :hired-at
 ;;    .getTime)
 
+;;;;
+;; But with some->, it avoids the exception and returns nil instead.
+;;
+(some-> aayla
+        :hired-at
+        .getTime)
 
+;;;;
+;; And if :hired-at exists (in a valid format), then we can
+;; .getTime on it.
+;;
+(some-> (assoc aayla :hired-at #inst "2000-01-01")
+        :hired-at
+        .getTime)
+
+
+(defn describe-number
+  [n]
+  (cond-> []
+    (odd? n) (conj "odd")
+    (even? n) (conj "even")
+    (zero? n) (conj "zero")
+    (pos? n) (conj "positive")
+    (neg? n) (conj "nevative")))
+
+(describe-number -7)
+(describe-number -4)
+(describe-number 0)
+(describe-number 1)
+(describe-number 2)
