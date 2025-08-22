@@ -144,3 +144,10 @@
 (describe-number 0)
 (describe-number 1)
 (describe-number 2)
+
+
+(as-> {:ints (range 0 5 1)} $
+  (:ints $)
+  (map inc $)
+  (conj $ 100)
+  (apply + $))
