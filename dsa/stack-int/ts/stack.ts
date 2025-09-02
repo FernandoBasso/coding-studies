@@ -1,6 +1,6 @@
 type StackNode<T> = {
   value: T | null;
-  prev: StackNode<T> | null
+  prev: StackNode<T> | null;
 };
 
 export class Stack<T> {
@@ -10,6 +10,24 @@ export class Stack<T> {
   constructor() {
     this._top = null;
     this._size = 0;
+  }
+
+  isEmpty(): boolean {
+    return this._size === 0;
+  }
+
+  size(): number {
+    return this._size;
+  }
+
+  /**
+   * Returns the top value without deleting it from the stack.
+   */
+  peek(): T | null {
+    if (this._top === null)
+      return null;
+
+    return this._top.value;
   }
 
   /**
@@ -27,6 +45,8 @@ export class Stack<T> {
 
     node.prev = this._top;
     this._top = node;
+
+    return void (0);
   }
 
   /**
@@ -34,8 +54,7 @@ export class Stack<T> {
    * it from the stack.
    */
   pop(): T | null {
-    if (this._top === null)
-      return null;
+    if (this._top === null) return null;
 
     const top = this._top;
 
@@ -43,19 +62,5 @@ export class Stack<T> {
     this._top = this._top.prev;
 
     return top.value;
-  }
-
-  /**
-   * Returns the top value without deleting it from the stack.
-   */
-  peek(): T | null {
-    if (this._top === null)
-      return null;
-
-    return this._top.value;
-  }
-
-  size(): number {
-    return this._size;
   }
 }

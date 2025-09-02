@@ -79,4 +79,27 @@ describe("Stack", () => {
       expect(stack.peek()).toBe(90);
     });
   });
+
+  describe("size()", () => {
+    const stack = new Stack<number>();
+
+    expect(stack.size()).toBe(0);
+
+    stack.push(10);
+    stack.push(20);
+
+    expect(stack.size()).toBe(2);
+  });
+
+  describe("isEmpty()", () => {
+    const stack = new Stack<number>();
+
+    expect(stack.isEmpty()).toBe(true);
+
+    stack.push(10);
+    expect(stack.isEmpty()).toBe(false);
+
+    stack.pop();
+    expect(stack.isEmpty()).toBe(true);
+  });
 });
