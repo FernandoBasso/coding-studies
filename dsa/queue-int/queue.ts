@@ -61,7 +61,7 @@ export class Queue<T> {
   }
 
   /**
-   * Returns the head value or null. Does not mutate the queue.
+   * Returns the head value or null without actually dequeuing it.
    */
 
   peek(): T | null {
