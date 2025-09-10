@@ -42,6 +42,13 @@ type Point = {
   y: number;
 };
 
+const dir: Array<[number, number]> = [
+  [-1, 0],
+  [1, 0],
+  [0, -1],
+  [0, 1],
+];
+
 /**
  * The function that actually recurses and solves the maze.
  *
@@ -56,6 +63,7 @@ function walk(
   curr: Point,
   end: Point,
   seen: Array<Array<boolean>>,
+  path: Array<Point>,
 ): boolean {
   const colsLen: number = maze[0].length;
   const rowsLen: number = maze.length;
@@ -79,9 +87,11 @@ function walk(
   }
 
   ////
-  // If at the exit.
+  // If curr coords is the same as end coords, then
+  // we found the exit.
   //
   if (curr.x === end.x && curr.y === end.y) {
+    path.push(curr);
     return true;
   }
 
@@ -92,7 +102,41 @@ function walk(
     return false;
   }
 
-  return !!0;
+  ////
+  // Keep track of the current point so we can build the
+  // whole path we have been walking so far.
+  //
+  seen[curr.x][curr.y] = true;
+  path.push(curr);
+
+  ////
+  // Recurse.
+  //
+  for (let i = 0; i < dir.length; ++i) {
+    const [x, y] = dir[i];
+    if (walk(
+      maze,
+      wall,
+      curr,
+      {
+        x: curr.x + x,
+        y: curr.y + y,
+      },
+      seen,
+      path
+    )) {
+      return true
+    };
+  }
+
+  ////
+  // If we get to this point, it means that point was no good
+  // for one reason or another, so we remove it from path as
+  // it doesn't lead to the exit.
+  //
+  path.pop();
+
+  return false;
 }
 
 /**
@@ -103,9 +147,17 @@ function walk(
 function solve(
   maze: string[],
   wall: string,
-  curr: Point,
+  start: Point,
   end: Point,
 ): Array<Point> {
-  return [];
+  const seen: Array<Array<boolean>> = [];
+  const path: Array<Point> = [];
+
+  for (let i = 0; i < maze.length; ++i)
+    seen.push(new Array(maze[0].length).fill(false));
+
+  walk(maze, wall, start, end, seen, path);
+
+  return path;
 }
 
