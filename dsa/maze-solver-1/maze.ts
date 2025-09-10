@@ -55,6 +55,7 @@ function walk(
   wall: string,
   curr: Point,
   end: Point,
+  seen: Array<Array<boolean>>,
 ): boolean {
   const colsLen: number = maze[0].length;
   const rowsLen: number = maze.length;
@@ -67,6 +68,27 @@ function walk(
     curr.x < 0 || curr.x >= colsLen ||
     curr.y < 0 || curr.y >= rowsLen
   ) {
+    return false;
+  }
+
+  ////
+  // If on a wall.
+  //
+  if (maze[curr.x][curr.y] === wall) {
+    return false;
+  }
+
+  ////
+  // If at the exit.
+  //
+  if (curr.x === end.x && curr.y === end.y) {
+    return true;
+  }
+
+  ////
+  // If we have visited that point before.
+  //
+  if (seen[curr.x][curr.y]) {
     return false;
   }
 
