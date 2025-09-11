@@ -25,6 +25,8 @@ A maze with a single solution.
 
 */
 
+const log = console.log.bind(console);
+
 /**
  * Represent the maze as an array of strings in TypeScript.
  */
@@ -37,7 +39,7 @@ const maze: Array<string> = [
   "#S##########",
 ];
 
-type Point = {
+export type Point = {
   x: number;
   y: number;
 };
@@ -75,16 +77,14 @@ function walk(
   if (
     curr.x < 0 || curr.x >= colsLen ||
     curr.y < 0 || curr.y >= rowsLen
-  ) {
+  )
     return false;
-  }
 
   ////
   // If on a wall.
   //
-  if (maze[curr.x][curr.y] === wall) {
+  if (maze[curr.y][curr.x] === wall)
     return false;
-  }
 
   ////
   // If curr coords is the same as end coords, then
@@ -98,7 +98,7 @@ function walk(
   ////
   // If we have visited that point before.
   //
-  if (seen[curr.x][curr.y]) {
+  if (seen[curr.y][curr.x]) {
     return false;
   }
 
@@ -106,7 +106,7 @@ function walk(
   // Keep track of the current point so we can build the
   // whole path we have been walking so far.
   //
-  seen[curr.x][curr.y] = true;
+  seen[curr.y][curr.x] = true;
   path.push(curr);
 
   ////
@@ -144,7 +144,7 @@ function walk(
  * itself. It instead delegates the algorithm and recursion
  * to the walk() function.
  */
-function solve(
+export function solve(
   maze: string[],
   wall: string,
   start: Point,
@@ -152,9 +152,10 @@ function solve(
 ): Array<Point> {
   const seen: Array<Array<boolean>> = [];
   const path: Array<Point> = [];
+  const numCols: number = maze[0].length;
 
   for (let i = 0; i < maze.length; ++i)
-    seen.push(new Array(maze[0].length).fill(false));
+    seen.push(new Array(numCols).fill(false));
 
   walk(maze, wall, start, end, seen, path);
 
