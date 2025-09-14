@@ -16,28 +16,28 @@ End: E
 
 A maze with a single solution.
 
-    ##########E#
+    ##########S#
     #   #####  #
     #   #     ##
     ##### #### #
     #     ######
-    #S##########
+    #E##########
 
-*/
 
-const log = console.log.bind(console);
-
-/**
- * Represent the maze as an array of strings in TypeScript.
- */
+Represent the maze as an array of strings in TypeScript.
+Start is at row 0, column 11: { x: 10, y: 0 }.
+Exit is at row 5, column 1: { x: 1, y: 5 }.
 const maze: Array<string> = [
-  "##########E#",
+  "##########S#",
   "#   #####  #",
   "#   #     ##",
   "##### #### #",
   "#     ######",
-  "#S##########",
+  "#E##########",
 ];
+*/
+
+import { log } from "../../libts";
 
 export type Point = {
   x: number;
@@ -72,26 +72,28 @@ function walk(
 
   ////
   // If we are before the first row or column, or after the
-  // first row or column.
+  // first row or column, which means, we are off the edges.
   //
   if (
     curr.x < 0 || curr.x >= colsLen ||
     curr.y < 0 || curr.y >= rowsLen
-  )
+  ) {
     return false;
+  }
 
   ////
   // If on a wall.
   //
-  if (maze[curr.y][curr.x] === wall)
+  if (maze[curr.y][curr.x] === wall) {
     return false;
+  }
 
   ////
   // If curr coords is the same as end coords, then
   // we found the exit.
   //
   if (curr.x === end.x && curr.y === end.y) {
-    path.push(curr);
+    path.push({ x: curr.x, y: curr.y });
     return true;
   }
 
@@ -107,24 +109,27 @@ function walk(
   // whole path we have been walking so far.
   //
   seen[curr.y][curr.x] = true;
-  path.push(curr);
+  path.push({ x: curr.x, y: curr.y });
 
   ////
   // Recurse.
   //
   for (let i = 0; i < dir.length; ++i) {
     const [x, y] = dir[i];
+    log({ x, y });
+
     if (walk(
       maze,
       wall,
-      curr,
       {
         x: curr.x + x,
         y: curr.y + y,
       },
+      end,
       seen,
       path
     )) {
+      log({ path });
       return true
     };
   }
@@ -148,7 +153,7 @@ export function solve(
   maze: string[],
   wall: string,
   start: Point,
-  end: Point,
+  exit: Point,
 ): Array<Point> {
   const seen: Array<Array<boolean>> = [];
   const path: Array<Point> = [];
@@ -157,8 +162,7 @@ export function solve(
   for (let i = 0; i < maze.length; ++i)
     seen.push(new Array(numCols).fill(false));
 
-  walk(maze, wall, start, end, seen, path);
+  walk(maze, wall, start, exit, seen, path);
 
   return path;
 }
-
