@@ -27,23 +27,6 @@ const maze: Array<string> = [
   "#     ######",
   "#E##########",
 ];
-const expected: Array<Point> = [
-  { x: 10, y: 0 },
-  { x: 10, y: 1 },
-  { x: 9, y: 1 },
-  { x: 9, y: 2 },
-  { x: 8, y: 2 },
-  { x: 7, y: 2 },
-  { x: 6, y: 2 },
-  { x: 5, y: 2 },
-  { x: 5, y: 3 },
-  { x: 5, y: 4 },
-  { x: 4, y: 4 },
-  { x: 3, y: 4 },
-  { x: 2, y: 4 },
-  { x: 1, y: 4 },
-  { x: 1, y: 5 },
-];
 
 describe("maze solve()", () => {
   it("should create the correct solution path", () => {
@@ -53,9 +36,25 @@ describe("maze solve()", () => {
       { x: 10, y: 0 },
       { x: 1, y: 5 },
     );
-    // const expected: Array<Point> = [];
 
-    log({ actual })
+    const expected: Array<Point> = [
+      { x: 10, y: 0 },
+      { x: 10, y: 1 },
+      { x: 9, y: 1 },
+      { x: 9, y: 2 },
+      { x: 8, y: 2 },
+      { x: 7, y: 2 },
+      { x: 6, y: 2 },
+      { x: 5, y: 2 },
+      { x: 5, y: 3 },
+      { x: 5, y: 4 },
+      { x: 4, y: 4 },
+      { x: 3, y: 4 },
+      { x: 2, y: 4 },
+      { x: 1, y: 4 },
+      { x: 1, y: 5 },
+    ];
+
     expect(drawPath(maze, actual)).toEqual(drawPath(maze, expected));
   });
 });

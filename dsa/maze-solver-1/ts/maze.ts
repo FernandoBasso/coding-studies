@@ -37,8 +37,6 @@ const maze: Array<string> = [
 ];
 */
 
-import { log } from "../../libts";
-
 export type Point = {
   x: number;
   y: number;
@@ -93,7 +91,7 @@ function walk(
   // we found the exit.
   //
   if (curr.x === end.x && curr.y === end.y) {
-    path.push({ x: curr.x, y: curr.y });
+    path.push(curr);
     return true;
   }
 
@@ -109,14 +107,13 @@ function walk(
   // whole path we have been walking so far.
   //
   seen[curr.y][curr.x] = true;
-  path.push({ x: curr.x, y: curr.y });
+  path.push(curr);
 
   ////
   // Recurse.
   //
   for (let i = 0; i < dir.length; ++i) {
     const [x, y] = dir[i];
-    log({ x, y });
 
     if (walk(
       maze,
@@ -129,7 +126,6 @@ function walk(
       seen,
       path
     )) {
-      log({ path });
       return true
     };
   }
