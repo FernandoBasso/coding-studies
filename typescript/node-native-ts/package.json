@@ -1,0 +1,10 @@
+{
+  "name": "node-native-ts",
+  "version": "0.0.1",
+  "description": "Using TypeScript natively in Node.js",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^24.7.2"
+  }
+}
