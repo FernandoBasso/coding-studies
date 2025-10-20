@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./dist",
+    "target": "es2022",
+    "module": "nodenext",
+    "strict": true,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "node",
+      "jest"
+    ]
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+  // "exclude": ["./src/*.spec.ts"]
+}
