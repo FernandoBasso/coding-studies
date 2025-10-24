@@ -1,8 +1,16 @@
-const floor = Math.floor.bind(Math);
-const ceil = Math.ceil.bind(Math);
-export {
-  floor,
-  ceil,
-};
+export const log = console.log.bind(console);
 
-export { isNil } from "./isNil";
+export const max = Math.max.bind(Math);
+export const min = Math.min.bind(Math);
+export const floor = Math.floor.bind(Math);
+export const ceil = Math.ceil.bind(Math);
+
+export {
+  type Nullable,
+  type Nil,
+  type NonNil,
+  isNil,
+  isNotNil,
+} from "./nullable";
+
+export { len } from "./len";

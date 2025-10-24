@@ -1,4 +1,4 @@
-import { isNil } from "./isNil";
+import { isNil } from "./nullable";
 
 describe("isNil()", () => {
   const cases: Array<[description: string, input: unknown, expected: boolean]> = [
@@ -23,4 +23,3 @@ describe("isNil()", () => {
     expect(isNil(input)).toBe(expected);
   });
 });
-
