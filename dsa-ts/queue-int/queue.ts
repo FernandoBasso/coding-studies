@@ -1,6 +1,6 @@
 export type QNode<T> = {
   val: T;
-  next: QNode<T>;
+  next: QNode<T> | null;
 };
 
 export class Queue<T> {
