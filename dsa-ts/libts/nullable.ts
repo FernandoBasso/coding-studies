@@ -1,3 +1,5 @@
+const log = console.log.bind(console);
+
 /**
  * Adds null and undefined as potential values of T.
  */
@@ -23,6 +25,14 @@ export function isNil<T>(t: Nullable<T>): t is Nil {
 /**
  * A type guard to check whether t is not nullable.
  */
- export function isNotNil<T>(t: Nullable<T>): t is NonNil<T> {
-   return !isNil(t);
- }
+export function isNotNil<T>(t: Nullable<T>): t is NonNil<T> {
+  return !isNil(t);
+}
+
+export function isNull(v: unknown): v is null {
+  return v === null;
+}
+
+export function isUndef(v: unknown): v is undefined {
+  return v === undefined;
+}

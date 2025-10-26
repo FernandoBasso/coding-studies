@@ -1,4 +1,5 @@
-import { isNil } from "./nullable";
+import { expectTypeOf } from "expect-type";
+import { isNil } from "./nullable.ts";
 
 describe("isNil()", () => {
   const cases: Array<[description: string, input: unknown, expected: boolean]> = [
@@ -22,4 +23,9 @@ describe("isNil()", () => {
   it.each(cases)("%s", (_, input, expected) => {
     expect(isNil(input)).toBe(expected);
   });
+});
+
+describe("isNull() type guard", () => {
+  expectTypeOf(isNil(undefined)).toBeBoolean();
+  expectTypeOf(isNil({})).toBeBoolean();
 });

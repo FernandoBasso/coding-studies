@@ -1,3 +1,4 @@
+import { isNull } from "../libts";
 export type QNode<T> = {
   val: T;
   next: QNode<T> | null;
@@ -28,7 +29,7 @@ export class Queue<T> {
   }
 
   dequeue(): T | null {
-    if (this.#head === null)
+    if (isNull(this.#head))
       return null;
 
     --this.length;
@@ -41,7 +42,7 @@ export class Queue<T> {
   }
 
   peek(): T | null {
-    if (this.#head === null)
+    if (isNull(this.#head))
       return null;
 
     return this.#head.val;

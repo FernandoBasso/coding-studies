@@ -1,5 +1,4 @@
 const floor = Math.floor.bind(Math);
-const log = console.log.bind(console);
 
 /**
  * Binary-searches the haystack for the needle.
@@ -21,8 +20,11 @@ export function search(
     const mid = floor(lo + (hi - lo) / 2);
     const val = haystack[mid];
 
-    if (needle === val) return true;
-    else if (needle < val) return run(x, xs, lo, mid);
-    else return run(x, xs, mid + 1, hi);
+    if (needle === val)
+      return true;
+    else if (needle < val)
+      return run(x, xs, lo, mid);
+    else
+      return run(x, xs, mid + 1, hi);
   })(needle, haystack, 0, haystack.length);
 }

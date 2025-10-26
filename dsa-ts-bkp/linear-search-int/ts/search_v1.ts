@@ -16,3 +16,5 @@ if (require.main === module) {
   log(search(7, [3, 5, 9, 7, 1]));
   log(search(7, [1, 9, 1001]));
 }
+
+// node bsearch.ts
