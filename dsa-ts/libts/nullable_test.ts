@@ -1,7 +1,7 @@
-import { expectTypeOf } from "expect-type";
+import { assertEquals } from "@std/assert";
 import { isNil } from "./nullable.ts";
 
-describe("isNil()", () => {
+Deno.test("isNil()", async (t) => {
   const cases: Array<[description: string, input: unknown, expected: boolean]> = [
     ["undefined", undefined, true],
     ["null", null, true],
@@ -20,12 +20,17 @@ describe("isNil()", () => {
     ["RegExp", /test/, false],
   ];
 
-  it.each(cases)("%s", (_, input, expected) => {
-    expect(isNil(input)).toBe(expected);
-  });
+  for (const [description, input, expected] of cases) {
+    await t.step(description, () => {
+      assertEquals(isNil(input), expected);
+    });
+  }
 });
 
-describe("isNull() type guard", () => {
-  expectTypeOf(isNil(undefined)).toBeBoolean();
-  expectTypeOf(isNil({})).toBeBoolean();
+Deno.test("isNull() type guard", () => {
+  // Type tests - these will be checked at compile time
+  // The function should return a boolean for any input
+  const _undefinedResult: boolean = isNil(undefined);
+  const _objectResult: boolean = isNil({});
+  // If the code compiles, the type guard is working correctly
 });
