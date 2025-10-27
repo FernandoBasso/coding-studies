@@ -1,4 +1,4 @@
-(ns dsa-clj.eval-prn-test
+(ns eval-prn.eval-prn-test
   (:require [clojure.test :refer [deftest is testing]]
             [dsa-clj.eval-prn :refer [eval-prn]]))
 

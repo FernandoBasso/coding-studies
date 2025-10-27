@@ -1,4 +1,4 @@
-(ns dsa-clj.eval-prn)
+(ns eval-prn.eval-prn)
 
 (def ^:private ops {'+ (fn [x y] (+ x y))
                     '* (fn [x y] (* x y))
@@ -12,6 +12,7 @@
   (let [stack []]
     (peek
      (reduce (fn [stk token]
+               (prn token)
                (if (number? token)
                  (conj stk token)
                  (let [x (peek stk)
@@ -24,8 +25,9 @@
 
 (def v1 [2 1 '+])
 (eval-prn v1)
-(last v1)
-
-(peek v1)
-
-(get ops (quote +))
+#_(let [f (peek stk)
+      stk1 (pop stk)
+      x (peek stk1)
+      stk2 (pop stk1)
+      y (peek stk2)]
+  (f x y))
