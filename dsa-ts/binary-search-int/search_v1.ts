@@ -15,7 +15,8 @@ export function search(
     lo: number,
     hi: number,
   ): boolean {
-    if (lo >= hi) return false;
+    if (lo >= hi)
+      return false;
 
     const mid = floor(lo + (hi - lo) / 2);
     const val = haystack[mid];

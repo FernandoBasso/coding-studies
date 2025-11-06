@@ -1,43 +1,33 @@
-/**
- * Partitions the array into and returns the pivot index.
- *
- * @param arr The array to partition.
- * @param lo The low index of the range.
- * @param hi The high index of the range.
- */
-function partition(arr: Array<number>, lo: number, hi: number): number {
-  const pivot = arr[hi];
-  let idx = lo - 1;
+const log: Console["log"] = console.log.bind(console);
 
-  for (let i = lo; i < hi; ++i) {
-    if (arr[i] <= pivot) {
+/**
+ * Performs an in-place swap of the elements of indexes p and q.
+ */
+function swap(arr: Array<unknown>, p: number, q: number): void {
+  const tmp: unknown = arr[p];
+  arr[p] = arr[q];
+  arr[q] = tmp;
+}
+
+function part(xs: Array<number>, ini: number, end: number): number {
+  const piv: number = xs[ini];
+  let idx: number = ini;
+
+  for (var i = ini + 1; i < xs.length; ++i) {
+    if (piv > xs[i]) {
       ++idx;
-      const tmp = arr[i];
-      arr[i] = arr[idx];
-      arr[idx] = tmp;
+
+      swap(xs, idx, i);
     }
   }
 
-  ++idx;
-
-  arr[hi] = arr[idx];
-  arr[idx] = pivot;
+  swap(xs, ini, idx);
 
   return idx;
 }
 
-function qs(arr: Array<number>, lo: number, hi: number): void {
-  if (lo >= hi)
-    return;
+if (import.meta.main) {
+  const xs = [50, 40, 70, 30, 10, 60, 20];
 
-  const pivotIdx = partition(arr, lo, hi);
-
-  qs(arr, lo, pivotIdx - 1);
-  qs(arr, pivotIdx + 1, hi);
-}
-
-
-
-export function qsort(xs: Array<number>): void {
-  qs(xs, 0, xs.length - 1);
+  log(part(xs, 0, xs.length));
 }
