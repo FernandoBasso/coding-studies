@@ -1,0 +1,16 @@
+{
+  "name": "dsa-js",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "qsort.js",
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
