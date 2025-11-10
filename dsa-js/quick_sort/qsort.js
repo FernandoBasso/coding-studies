@@ -9,30 +9,34 @@ function swap(arr, p, q) {
   arr[q] = tmp;
 }
 
-function part(xs, ini, end) {
+function partition(xs, ini, end) {
   var piv = xs[ini];
   var idx = ini;
 
-  for (var i = ini + 1; i < end; ++i) {
-    log({ i, piv, "xs[i]": xs[i] });
-    if (piv > xs[i]) {
-      ++idx;
-      swap(xs, idx, i);
-    }
-  }
+  for (var i = ini + 1; i < xs.length; ++i)
+    if (piv > xs[i])
+      swap(xs, ++idx, i);
 
   swap(xs, ini, idx);
-  log(xs);
 
   return idx;
+}
+
+export function qsort(arr, ini = 0, end = arr.length) {
+  if (ini >= end)
+    return arr;
+
+  var pidx = partition(arr, ini, end);
+  qsort(arr, ini, pidx - 1);
+  qsort(arr, pidx + 1, end);
 }
 
 if (import.meta.main) {
   var xs = [50, 10, 20, 60, 30, 40];
 
-  log(part(xs, 0, xs.length));
+  qsort(xs, 0, xs.length);
+  log(xs);
 }
-
 
 /*
 
