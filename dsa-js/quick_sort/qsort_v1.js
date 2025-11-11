@@ -17,19 +17,18 @@ function partition(xs, ini, end) {
     if (piv > xs[i])
       swap(xs, ++idx, i);
 
-  swap(xs, idx, ini);
+  swap(xs, ini, idx);
 
   return idx;
 }
 
-export function qsort(xs, ini = 0, end = xs.length) {
+export function qsort(arr, ini = 0, end = arr.length) {
   if (ini >= end)
-    return xs;
+    return arr;
 
-  var idx = partition(xs, ini, end);
-
-  qsort(xs, ini, idx - 1);
-  qsort(xs, ini + 1, end);
+  var pidx = partition(arr, ini, end);
+  qsort(arr, ini, pidx - 1);
+  qsort(arr, pidx + 1, end);
 }
 
 if (import.meta.main) {
@@ -38,3 +37,11 @@ if (import.meta.main) {
   qsort(xs, 0, xs.length);
   log(xs);
 }
+
+/*
+
+idx keeps track of how many elements are less than the pivot,
+or, which is the index will be moved to at the end (after the
+loop).
+
+*/
