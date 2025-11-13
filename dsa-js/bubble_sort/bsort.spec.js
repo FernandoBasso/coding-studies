@@ -32,8 +32,8 @@ describe("Bubble Sort", () => {
     bsort(xs);
     expect(xs).toEqual([-60, -50, -40, -30, -20, -10]);
 
-    // var ys = [50, 10, 20, -60, 30, 40];
-    // bsort(ys);
-    // expect(ys).toEqual([-60, 10, 20, 30, 40, 50]);
+    var ys = [50, 10, 20, -60, 30, 40];
+    bsort(ys);
+    expect(ys).toEqual([-60, 10, 20, 30, 40, 50]);
   });
 });
