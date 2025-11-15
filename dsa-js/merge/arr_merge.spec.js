@@ -35,7 +35,6 @@ describe("Merge Sorted Arrays", () => {
     var xs = [1, 3, 4];
     var ys = [2, 5];
     var res = merge(xs, ys);
-    breakpoint;
     expect(res).toEqual([1, 2, 3, 4, 5]);
   });
 });

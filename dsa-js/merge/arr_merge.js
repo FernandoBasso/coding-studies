@@ -1,5 +1,10 @@
 const log = console.log.bind(console);
 
+/**
+ * Merges xs and ys keeping their sorting order.
+ *
+ * @sig ([a], [a]) -> [a]
+ */
 export function merge(xs, ys) {
   var xsLen = xs.length,
       ysLen = ys.length,
@@ -13,13 +18,13 @@ export function merge(xs, ys) {
     else
       merged[i + j] = ys[j++];
 
-  if (i === xsLen)
-    while (j < ysLen)
-      merged[i + j] = ys[j++];
-
-  if (j === ysLen)
+  if (i < xsLen)
     while (i < xsLen)
-      merged[j + i] = xs[i++];
+      merged[i + j] = xs[i++];
+
+  if (j < ysLen)
+    while (j < ysLen)
+      merged[j + i] = ys[j++];
 
   return merged;
 }
