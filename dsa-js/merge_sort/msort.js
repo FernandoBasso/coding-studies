@@ -1,5 +1,10 @@
 var log = console.log.bind(console);
 
+/**
+ * Merges two sorted arrays while keeping their sorting order.
+ *
+ * @sig ([a], [a]) -> [a]
+ */
 export function merge(xs, ys) {
   var i = 0,
       j = 0,
