@@ -4,7 +4,7 @@ export function merge(xs, ys) {
   var i = 0,
       j = 0,
       xsLen = xs.length,
-      ysLen = ys.length
+      ysLen = ys.length,
       res = [];
 
   while (i < xsLen && j < ysLen)
@@ -13,18 +13,37 @@ export function merge(xs, ys) {
     else
       res.push(ys[j++]);
 
-    if (i === xsLen)
-      res.push(...ys.slice(j));
+    if (i < xsLen)
+      while (i < xsLen)
+        res[j + i] = xs[i++];
 
-    if (j === ysLen)
-      res.push(...ys.slice(i));
+    if (j < ysLen)
+      while (j < ysLen)
+        res[i + j] = ys[j++];
 
   return res;
 }
 
-export function msort() {
+/**
+ * Sorts the input from smallest to largest.
+ *
+ * @sig [a] -> [a]
+ */
+export function msort(xs) {
+  var len = xs.length;
+
+  if (len <= 1)
+    return xs;
+
+  var midIdx = Math.floor(len / 2);
+
+  var left = msort(xs.slice(0, midIdx));
+  var right = msort(xs.slice(midIdx, len));
+
+  return merge(left, right);
 }
 
 if (import.meta.main) {
-  merge([1], [2]);
+  var res = msort([1, -1]);
+  log(res);
 }
