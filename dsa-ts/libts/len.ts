@@ -1,18 +1,6 @@
-import { log } from ".";
-
 /**
- * Try this!
+ * Returns the length of any object that has the length property.
  */
 export function len<T extends string | Array<unknown>>(xs: T): number {
   return xs.length;
 }
-
-len([])
-
-// getName gets the user name.
-function getName({ name, email }: { name: string; email: string }): string {
-  return `${name}: ${email}`;
-}
-
-log(getName({ name: "Yoda", email: "yoda@jedi.dev" }));
-

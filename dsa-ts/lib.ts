@@ -1,4 +1,4 @@
-export const log = console.log.bind(console);
+export { log, info, warn, error } from "./libts/log.ts";
 
 export const max = Math.max.bind(Math);
 export const min = Math.min.bind(Math);
