@@ -2,10 +2,10 @@
   "editor.fontSize": 15,
   "editor.parameterHints.enabled": false,
   "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
+    "other": "off",
+    "comments": "off",
+    "strings": "off"
   },
   "terminal.integrated.fontSize": 15,
-  "AllAutocomplete.showCurrentDocument": false,
+  "AllAutocomplete.showCurrentDocument": false
 }
