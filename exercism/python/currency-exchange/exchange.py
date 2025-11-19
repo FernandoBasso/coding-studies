@@ -60,6 +60,14 @@ def get_leftover_of_bills(amount, denomination):
 
 def exchangeable_value(budget, exchange_rate, spread, denomination):
     """
+    Computes the maximum exchange value in the target currency.
+
+    The spread is threated as a percentage and added to the exchange
+    rate.
+
+    Because there are no fractional bills, it is likely that some
+    remainder amount will be lost in some transactions.
+
     :param budget: float - the amount of your money you are planning to exchange.
     :param exchange_rate: float - the unit value of the foreign currency.
     :param spread: int - percentage that is taken as an exchange fee.
@@ -67,8 +75,24 @@ def exchangeable_value(budget, exchange_rate, spread, denomination):
     :return: int - maximum value you can get.
     """
 
+    ##
+    # New exchange rate taking the spread into consideration.
+    #
     rate_with_spread = exchange_rate + (spread / 100 * exchange_rate)
+
+    ##
+    # The total target currency.
+    #
     exchanged_money = exchange_money(budget, rate_with_spread)
+
+    ##
+    # The number of complete bills (not fractional) in the target
+    # currency.
+    #
     exchanged_bills = exchanged_money // denomination
 
+    ##
+    # The maxium value in the target currency consisting only of
+    # complete bills.
+    #
     return exchanged_bills * denomination
