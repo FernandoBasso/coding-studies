@@ -37,6 +37,6 @@ def elapsed_time_in_minutes(num_layers, elapsed_bake_time):
     lasagna.
 
     :param num_layers: int - The number of layers to prepare.
-    :return: int - The time spent so far
+    :return: int - The time spent so far.
     """
     return preparation_time_in_minutes(num_layers) + elapsed_bake_time

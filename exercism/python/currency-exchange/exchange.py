@@ -89,7 +89,7 @@ def exchangeable_value(budget, exchange_rate, spread, denomination):
     # The number of complete bills (not fractional) in the target
     # currency.
     #
-    exchanged_bills = exchanged_money // denomination
+    exchanged_bills = get_number_of_bills(exchanged_money, denomination)
 
     ##
     # The maxium value in the target currency consisting only of

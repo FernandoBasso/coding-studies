@@ -116,7 +116,7 @@ class CurrencyExchangeTest(unittest.TestCase):
     def test_exchangeable_value(self):
         test_data = [(100000, 10.61, 10, 1),
                      (1500, 0.84, 25, 40),
-                     (470000, 1050, 30, 10000000000),
+                     (469999, 1050, 30, 10000000000),
                      (470000, 0.00000009, 30, 700),
                      (425.33, 0.0009, 30, 700)]
 
