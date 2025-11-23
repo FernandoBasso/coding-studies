@@ -1,43 +1,43 @@
 import { useState, useContext, type JSX } from "react";
 import {
-  context as UserContext,
-  type UserState,
+  context as JediContext,
+  type JediState,
 } from "../../context/store";
 
 function Profile(): JSX.Element {
-  const user = useContext(UserContext);
+  const jedi = useContext(JediContext);
   return (
     <div>
       <h2>Context Jedi</h2>
       <p>
-        {user.first}, {user.last}
+        {jedi.first}, {jedi.last}
       </p>
     </div>
   );
 }
 
-function nextJedi({ first }: UserState): UserState {
+function nextJedi({ first }: JediState): JediState {
   if (first === "Ahsoka") return { first: "Aayla", last: "Secura" };
 
   return { first: "Ahsoka", last: "Tano" };
 }
 
 export function UseContextComp(): JSX.Element {
-  const [user, userSet] = useState<UserState>({
+  const [jedi, jediSet] = useState<JediState>({
     first: "Ahsoka",
     last: "Thano",
   });
 
   return (
-    <UserContext.Provider value={user}>
+    <JediContext.Provider value={jedi}>
       <Profile />
       <button
         onClick={() => {
-          userSet(nextJedi(user));
+          jediSet(nextJedi(jedi));
         }}
       >
         Toggle Jedi
       </button>
-    </UserContext.Provider>
+    </JediContext.Provider>
   );
 }

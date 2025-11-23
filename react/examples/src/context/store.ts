@@ -7,4 +7,4 @@ const initialState = {
 
 export const context = createContext<typeof initialState>(initialState);
 
-export type UserState = typeof initialState;
+export type JediState = typeof initialState;
