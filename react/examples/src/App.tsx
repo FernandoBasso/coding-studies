@@ -1,7 +1,13 @@
 import "./App.css";
 
+import { UseStateComp } from "./components/UseStateComp/UseStateComp";
+
 function App() {
-  return <p>Skills FE</p>;
+  return (
+    <div className="wrapper">
+      <UseStateComp />
+    </div>
+  );
 }
 
 export default App;
