@@ -5,7 +5,7 @@ export function UseEffectComp(): JSX.Element {
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      valSet(v => v + 1);
+      valSet((v) => v + 1);
     }, 1e3);
 
     return function cleanUp() {
@@ -13,5 +13,10 @@ export function UseEffectComp(): JSX.Element {
     };
   }, []);
 
-  return <div>{val}</div>;
+  return (
+    <div>
+      <h2>Timer</h2>
+      <p>{val}</p>
+    </div>
+  );
 }
