@@ -1,12 +1,16 @@
 import { UseStateComp } from "./components/UseStateComp/UseStateComp";
 import { UseEffectComp } from "./components/UseEffect";
 import { UseContextComp } from "./components/UseContext/UseContextComp";
+import { CounterUseReducer } from "./components/UseReducer/UseReducerComp";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="wrapper">
+      <CounterUseReducer />
+
+      <hr />
       <UseContextComp />
       <hr />
       <UseEffectComp />
