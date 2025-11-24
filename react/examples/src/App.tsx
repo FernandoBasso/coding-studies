@@ -3,12 +3,16 @@ import { UseEffectComp } from "./components/UseEffect";
 import { UseContextComp } from "./components/UseContext/UseContextComp";
 import { CounterUseReducer } from "./components/UseReducer/UseReducerComp";
 import { UseRefFocusInput } from "./components/UseRefExamples/UseRefFocusInput";
+import { UseFetchDataComp } from "./components/UseFetchData/UseFetchDataComp";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="wrapper">
+      <UseFetchDataComp />
+
+      <hr />
       <UseRefFocusInput />
 
       <hr />
