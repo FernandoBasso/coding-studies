@@ -1,4 +1,11 @@
 {
   "name": "dsa-leetcode",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --verbose"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "typescript": "^5.9.3"
+  }
 }
