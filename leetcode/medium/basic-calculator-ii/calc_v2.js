@@ -109,9 +109,11 @@ if (import.meta.main) {
   const res3 = calc("3 +5 /2")
   log({ res3 });
 
-  const res4 (calc("234 + 1 - 1"));
+  const res4 = calc("234 + 1 - 1");
   log({ res4 });
 
-  // log(tokenize("234 + 1 - 1"));
-  // log(tokenize("1 - 234 / 9 * 1"))
+  log(tokenize("234 + 1 - 1"));
+  log(tokenize("1 - 234 / 9 * 1"))
 }
+
+export { tokenize, calc };
