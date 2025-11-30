@@ -17,14 +17,15 @@ describe("tokenize()", () => {
 });
 
 describe("calc()", () => {
-  expect(
-    calc("2 +3*5 * 1 * 1 * 1 - 1 + 1")
-  ).toEqual(17);
+  it("should compute the results", () => {
+    expect(
+      calc("2 +3*5 * 1 * 1 * 1 - 1 + 1")
+    ).toEqual(17);
 
+    expect(calc("3/ 2   ")).toEqual(1);
 
-  expect(calc("3/ 2   ")).toEqual(1);
+    expect(calc("3 +5 /2")).toEqual(5);
 
-  expect(calc("3 +5 /2")).toEqual(5);
-
-  expect(calc("234 + 1 - 1")).toEqual(234);
+    expect(calc("234 + 1 - 1")).toEqual(234);
+  });
 });

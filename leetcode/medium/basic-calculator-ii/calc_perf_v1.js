@@ -4,8 +4,8 @@ function isDigit(c) {
   return /\d/.test(c);
 }
 
-function calc(str) {
-  const stack = [];
+export function calc(str) {
+  const operands = [];
   let operator = "+";
 
   for (let i = 0; i < str.length; ++i) {
@@ -25,18 +25,18 @@ function calc(str) {
       if (operator === "-") {
         num = -1 * num;
       } else if (operator === "*") {
-        num = stack.pop() * num;
+        num = operands.pop() * num;
       } else if (operator === "/") {
-        num = stack.pop() / num | 0;
+        num = operands.pop() / num | 0;
       }
 
-      stack.push(num);
+      operands.push(num);
     } else {
       operator = str[i];
     }
   }
 
-  return stack.reduce((acc, x) => acc + x, 0);
+  return operands.reduce((acc, x) => acc + x, 0);
 }
 
 if (import.meta.main) {

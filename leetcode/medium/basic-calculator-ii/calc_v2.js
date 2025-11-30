@@ -40,10 +40,6 @@ function isOperator(c) {
   return ["+", "-", "*", "/"].includes(c);
 }
 
-function isLast(str, i) {
-  return str[i + 1] === undefined;
-}
-
 function tokenize(str) {
   const tokens = [];
   let digits = [];
