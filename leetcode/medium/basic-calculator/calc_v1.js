@@ -4,6 +4,10 @@ function isDigit(c) {
   return /\d/.test(c);
 }
 
+function toInt(digits) {
+  return Number.parseInt(digits.join(""), 10);
+}
+
 class Calc {
   #arr;
   #idx = 0;
@@ -36,7 +40,7 @@ class Calc {
 
         this.#idx--;
 
-        sum += Number.parseInt(digits.join(""), 10) * operator;
+        sum += toInt(digits) * operator;
       }
 
       this.#idx++;
