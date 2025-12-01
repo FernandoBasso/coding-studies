@@ -8,9 +8,11 @@ function toInt(digits) {
   return Number.parseInt(digits.join(""), 10);
 }
 
+//
+// The solution involves performing a depth-first recursion so
+// the expressions with most precedence are computed first.
+//
 function calculate(str) {
-  log(str);
-
   function go(arr, startIdx = 0) {
     let idx = startIdx;
     let sum = 0;
@@ -20,9 +22,9 @@ function calculate(str) {
       if (arr[idx] === ")") {
         break;
       } else if (arr[idx] === "(") {
-        idx++;
-        const [result, newIdx] = go(arr, idx);
-        sum += operator * result;
+        ++idx;
+        const [number, newIdx] = go(arr, idx);
+        sum += operator * number;
         idx = newIdx;
       } else if (arr[idx] === "-") {
         operator = -1;
@@ -30,9 +32,11 @@ function calculate(str) {
         operator = 1;
       } else if (isDigit(arr[idx])) {
         const digits = [];
+
         while (idx < arr.length && isDigit(arr[idx])) {
           digits.push(arr[idx++]);
         }
+
         idx--;
 
         sum += toInt(digits) * operator;
@@ -45,9 +49,10 @@ function calculate(str) {
   }
 
   const arr = str.split("");
-  log(arr);
-  const [result] = go(arr);
-  return result;
+
+  const [sum] = go(str.split);
+
+  return sum;
 }
 
 if (import.meta.main) {
