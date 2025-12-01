@@ -9,7 +9,7 @@ var log = console.log.bind(console);
  * @sig [Int] -> [Int, Int, Int]
  */
 function countFreqs(xs) {
-  return xs.reduce(function counter(acc, x) {
+  return xs.reduce(function count(acc, x) {
     var key = x < 0
       ? 'negatives'
       : x === 0

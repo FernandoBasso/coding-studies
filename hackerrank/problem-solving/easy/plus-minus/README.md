@@ -1,22 +1,18 @@
-= Plus Minus HackerRank Problem Solving Challenge
-:toc: right
-:icons: font
-:stem: latexmath
-:source-highlighter: highlight.js
+# Plus Minus HackerRank Problem Solving Challenge
 
-* link:https://www.hackerrank.com/challenges/plus-minus/[Plus Minus :: HackerRank]
+* [Plus Minus :: HackerRank](https://www.hackerrank.com/challenges/plus-minus/)
 
-== Intro
+## Intro
 
 The problem involves counting the frequencies of negative, zero, and positive numbers and the ratios of each of these three “categories” in the input.
 
 In the example on the page:
 
-----
+```
 [1, 1, 0, -1, -1]
-----
+```
 
-We have a ratio of stem:[\frac{2}{5}] positive numbers, stem:[\frac{1}{5}] zeroes, and stem:[\frac{2}{5}] negatives.
+We have a ratio of $\frac{2}{5}$ positive numbers, $\frac{1}{5}$ zeroes, and $\frac{2}{5}$ negatives.
 
 The sum of those ratios/fractions/percentages end up as 1 (100%).
 
@@ -28,11 +24,10 @@ One could break the problem into:
 To compute the ratios, simply divide the frequency of the category (negative, zero, positive) by the length of the input array.
 If there are, say, 3 negatives, 1 zero, and 2 positives, the ratios would be (the array would contain 6 elements, thus we would divide by 6):
 
-* stem:[\frac{3}{6}].
-* stem:[\frac{1}{6}].
-* stem:[\frac{2}{6}].
+* $\frac{3}{6}$.
+* $\frac{1}{6}$.
+* $\frac{2}{6}$.
 
-[stem]
-++++
+$$
 \frac{3}{6} + \frac{1}{6} + \frac{2}{6} = \frac{6}{6} = 1
-++++
+$$
