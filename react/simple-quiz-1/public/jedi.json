@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Ahsoka Tano",
+    "skills": ["The Force", "Lightsaber"]
+  },
+  {
+    "id": 2,
+    "name": "Aayla Secura",
+    "skills": ["Mind trick", "Lightsaber", "High jump"]
+  }
+]
