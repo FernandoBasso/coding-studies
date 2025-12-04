@@ -1,8 +1,5 @@
 const log = console.log.bind(console);
 
-
-
-
 function makeCounter() {
   let count = 0;
 
@@ -27,6 +24,4 @@ log(counter());
 
 log(counter());
 //=> 4
-
-
 
