@@ -1,3 +1,5 @@
+const log = console.log.bind(console);
+
 // @ts-check
 //
 // ☝🏽 The line above enables type checking for this file. Various IDEs interpret
@@ -26,7 +28,7 @@
  * @returns {number} the rate per day
  */
 export function dayRate(ratePerHour) {
-  return ratePerHour * 8;
+  return 8 * ratePerHour;
 }
 
 /**
@@ -37,22 +39,25 @@ export function dayRate(ratePerHour) {
  * @returns {number} the number of days
  */
 export function daysInBudget(budget, ratePerHour) {
-  return Math.floor(budget / dayRate(ratePerHour));
+  return budget / dayRate(ratePerHour) | 0;
 }
 
 /**
  * Calculates the discounted rate for large projects, rounded up
  *
- * @param {number} ratePerHour
- * @param {number} numDays: number of days the project spans
- * @param {number} discount: for example 20% written as 0.2
+ * @param {number} hourlyRate
+ * @param {number} projectDays: number of days the project spans
+ * @param {number} montlyDiscount: for example 20% written as 0.2
  * @returns {number} the rounded up discounted rate
  */
-export function priceWithMonthlyDiscount(ratePerHour, numDays, discount) {
-  const remainingDays =  numDays % 22;
-  const fullDays = numDays - remainingDays;
-  const fullDaysPrice = fullDays * dayRate(ratePerHour) * (1 - discount);
-  const remainingDaysPrice = remainingDays * dayRate(ratePerHour);
+export function priceWithMonthlyDiscount(hourlyRate, projectDays, montlyDiscount) {
+  const BILLABLE_DAYS_PER_MONT = 22;
 
-  return Math.ceil(remainingDaysPrice + fullDaysPrice);
+  const remainingDays =  projectDays % BILLABLE_DAYS_PER_MONT;
+  const fullMonthDays = projectDays - remainingDays;
+  const fullMonthsCost = fullMonthDays * dayRate(hourlyRate);
+  const fullMonthsCostwithDiscount = fullMonthsCost * (1 - montlyDiscount);
+  const remainingDaysCost = remainingDays * dayRate(hourlyRate);
+
+  return Math.ceil(remainingDaysCost + fullMonthsCostwithDiscount);
 }
