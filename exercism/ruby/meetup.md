@@ -218,7 +218,6 @@ class Meetup
 end
 ```
 
-1. If the day of week we target is $\ge$ the start day of our schedule then I just use it.
-So if the schedule starts with Tuesday (2) and we want a Wednesday (3) I just need to add one day $3 - 1$.
+If the day of week we target is $\ge$ the start day of our schedule then I just use it. So if the schedule starts with Tuesday (2) and we want a Wednesday (3) I just need to add one day $3 - 1$.
 
 But if our schedule starts on Friday (5) and we want a Monday (1), we would need to go back 4 days $5 - 1$, but then we would end up before our start day, so we just add a full week (7) to get the next Monday.
