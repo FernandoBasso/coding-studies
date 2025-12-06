@@ -22,4 +22,5 @@ function datefmt () {
   date +"%a, %b the $(day_with_suffix), %Y at %H:%M"
 }
 
-git commit -m "Save current state on $(datefmt)"
+git commit -m "Save current state on $(datefmt)" \
+	&& git push gh HEAD

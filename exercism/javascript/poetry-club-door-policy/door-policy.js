@@ -38,7 +38,7 @@ export function frontDoorResponse(line) {
  * @returns {string} the front door password
  */
 export function frontDoorPassword(word) {
-  const first = word.slice(0, 1).toUpperCase();
+  const first = word.at(0).toUpperCase();
   const rest = word.slice(1).toLowerCase();
   return first + rest;
 }
@@ -51,8 +51,7 @@ export function frontDoorPassword(word) {
  * @returns {string}
  */
 export function backDoorResponse(line) {
-  const trimmedLine = line.trim();
-  return trimmedLine.slice(trimmedLine.length - 1);
+  return line.trimEnd().at(-1);
 }
 
 /**
