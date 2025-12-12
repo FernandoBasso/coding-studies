@@ -23,7 +23,11 @@ export function needsLicense(kind) {
  * @returns {string} a sentence of advice which option to choose
  */
 export function chooseVehicle(option1, option2) {
-  throw new Error('Remove this line and implement the function');
+  return (
+    option1 < option2
+      ? option1
+      : option2
+  ) + " is clearly the better choice.";
 }
 
 /**
@@ -35,5 +39,12 @@ export function chooseVehicle(option1, option2) {
  * @returns {number} expected resell price in the dealership
  */
 export function calculateResellPrice(originalPrice, age) {
-  throw new Error('Remove this line and implement the function');
+  let percentage = 0.7;
+
+  if (age < 3)
+    percentage = 0.8;
+  else if (age > 10)
+    percentage = 0.5;
+
+  return originalPrice * percentage;
 }
