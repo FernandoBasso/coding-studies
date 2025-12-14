@@ -26,6 +26,12 @@ export function timeToMixJuice(name) {
   }
 }
 
+const WEDGES_BY_SIZE = {
+  "small": 6,
+  "medium": 8,
+  "large": 10,
+};
+
 /**
  * Calculates the number of limes that need to be cut
  * to reach a certain supply.
@@ -43,18 +49,7 @@ export function limesToCut(wedgesNeeded, limes) {
 
   for (const lime of limes) {
     toCut += 1;
-
-    switch (lime) {
-      case "small":
-        wedges += 6;
-        break;
-      case "medium":
-        wedges += 8;
-        break;
-      case "large":
-        wedges += 10;
-        break;
-    }
+    wedges += WEDGES_BY_SIZE[lime];
 
     if (wedges >= wedgesNeeded)
       break;
