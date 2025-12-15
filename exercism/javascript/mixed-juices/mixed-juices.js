@@ -37,7 +37,7 @@ const WEDGES_BY_SIZE = {
  * to reach a certain supply.
  *
  * @param {number} wedgesNeeded
- * @param {string[]} limes
+ * @param {("small" | "medium" | "large")[]} limes
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
