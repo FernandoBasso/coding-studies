@@ -83,13 +83,10 @@ export function luckyNumber(value) {
  * @returns {string} error message
  */
 export function errorMessage(input) {
-  if (input === undefined || input === null || input === "")
+  if (!input)
     return "Required field";
 
-  const num = Number(input);
-
-  if (Number.isNaN(num) || num === 0)
-    return "Must be a number besides 0";
-
-  return "";
+  return Number(input)
+    ? ""
+    : "Must be a number besides 0";
 }
