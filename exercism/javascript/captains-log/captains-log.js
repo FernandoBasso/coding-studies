@@ -43,7 +43,6 @@ function randInt(min, max) {
  * @returns {string} a one-letter planet class.
  */
 export function randomPlanetClass() {
-  const classes = ["D", "H", "J", "K", "L", "M", "N", "R", "T", "Y"];
-
-  return classes[randInt(0, classes.length)];
+  const classes = "DHJKLMNRTY";
+  return "DHJKLMNRTY"[randInt(0, classes.length)];
 }
