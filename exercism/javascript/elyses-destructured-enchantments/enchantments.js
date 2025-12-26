@@ -19,7 +19,7 @@ export function getFirstCard([card1]) {
  *
  * @returns {Card} the second card in the deck
  */
-export function getSecondCard([_, card2]) {
+export function getSecondCard([, card2]) {
   return card2;
 }
 

@@ -1,14 +1,30 @@
 import { useState, useEffect } from "react";
+import type {
+  APICharacter,
+  FetchStatus,
+  APIInfo,
+  APIResults,
+} from "./types";
 
 const API_URL = "https://rickandmortyapi.com/api";
 
-function useFetch(): { data: Array<APICharacter>, status: FetchStatus } {
+type UseFetchParams = {
+  qStatus: "" | "Alive" | "Dead" | "unknown";
+};
+
+function useFetch(qStatus: UseFetchParams["qStatus"]): {
+  data: Array<APICharacter>;
+  status: FetchStatus;
+} {
   const [data, setData] = useState<Array<APICharacter>>([]);
   const [status, setStatus] = useState<FetchStatus>("loading");
 
+
   useEffect(() => {
-    fetch(API_URL + "/character")
-      .then((res: Response): Promise<APIInfo & APIResults> => res.json())
+    fetch(`${API_URL}/character?status=${qStatus}`)
+      .then(
+        (res: Response): Promise<APIInfo & APIResults> => res.json(),
+      )
       .then((data: APIInfo & APIResults): void => {
         setData(data.results);
         setStatus("success");
@@ -17,9 +33,9 @@ function useFetch(): { data: Array<APICharacter>, status: FetchStatus } {
         console.error(err);
         setStatus("error");
       });
-  }, []);
+  }, [qStatus]);
 
   return { data, status };
 }
 
-export { useFetch };
+export { type UseFetchParams, useFetch };
