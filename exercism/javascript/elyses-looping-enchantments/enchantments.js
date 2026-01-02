@@ -31,11 +31,10 @@ export function cardTypeCheck(stack, card) {
  * even (depending on `type`)
  */
 export function determineOddEvenCards(stack, type) {
-  const restType = type ? 0 : 1;
   let count = 0;
 
   for (const card of stack)
-    if (card % 2 === restType)
+    if (card % 2 === (type ? 0 : 1))
       ++count;
 
   return count;
