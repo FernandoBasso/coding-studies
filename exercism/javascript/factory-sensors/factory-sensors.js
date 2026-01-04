@@ -60,14 +60,18 @@ export function monitorTheMachine({
   try {
     check();
   } catch (err) {
-    if (err instanceof ArgumentError)
-      alertDeadSensor()
-    else if (err instanceof OverheatingError)
+    switch (err.constructor) {
+    case ArgumentError:
+      alertDeadSensor();
+      break;
+    case OverheatingError:
       if (err.temperature > 600)
         shutdown();
       else
         alertOverheating();
-    else
+      break;
+    default:
       throw err;
+    }
   }
 }
