@@ -12,7 +12,7 @@ import (
 
 var (
 	binName  = "todo"
-	fileName = ".todo.json"
+	fileName = ".todos.json"
 )
 
 func TestMain(m *testing.M) {
@@ -40,7 +40,11 @@ func TestMain(m *testing.M) {
 	fmt.Println("Cleaning up...")
 
 	os.Remove(binName)
-	os.Remove(fileName)
+	err := os.Remove(fileName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error removing %s.", fileName)
+		fmt.Fprintln(os.Stderr, err)
+	}
 
 	os.Exit(result)
 }

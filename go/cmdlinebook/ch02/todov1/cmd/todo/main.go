@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"devhowto.dev/gocmdlinebook/ch02/todo"
+	todo "devhowto.dev/gocmdlinebook/ch02/todov1"
 )
 
 const todoFileName = ".todos.json"

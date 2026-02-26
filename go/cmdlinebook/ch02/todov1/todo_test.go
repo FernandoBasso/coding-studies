@@ -1,10 +1,10 @@
-package todo_test
+package todov1_test
 
 import (
 	"os"
 	"testing"
 
-	"devhowto.dev/gocmdlinebook/ch02/todo"
+	todo "devhowto.dev/gocmdlinebook/ch02/todov1"
 )
 
 func TestTodo(t *testing.T) {
