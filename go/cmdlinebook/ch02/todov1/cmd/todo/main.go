@@ -11,6 +11,11 @@ import (
 const todoFileName = ".todos.json"
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(), "\nCommand Line TODO app!\n\n")
+		flag.PrintDefaults()
+	}
+
 	task := flag.String("task", "", "Add task")
 	list := flag.Bool("list", false, "List tasks")
 	complete := flag.Int("complete", 0, "Index of item to mark as complete")
