@@ -34,7 +34,7 @@ func (l *List) Add(task string) {
 // an error if the given index does not exist.
 func (l *List) Complete(i int) error {
 	if i <= 0 || i > len(*l) {
-		return fmt.Errorf("Item %d does not exist", i)
+		return fmt.Errorf("item %d does not exist", i)
 	}
 
 	(*l)[i-1].Done = true
@@ -47,7 +47,7 @@ func (l *List) Complete(i int) error {
 // an error if the given index does not exist.
 func (l *List) Delete(i int) error {
 	if i < 0 || i > len(*l) {
-		return fmt.Errorf("Item %d does not exist", i)
+		return fmt.Errorf("item %d does not exist", i)
 	}
 
 	*l = append((*l)[:i-1], (*l)[i:]...)

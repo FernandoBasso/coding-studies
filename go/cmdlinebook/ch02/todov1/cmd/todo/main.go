@@ -1,17 +1,23 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
-	"strings"
 
-	todo "devhowto.dev/gocmdlinebook/ch02/todov1"
+	"devhowto.dev/gocmdlinebook/ch02/todov1"
 )
 
 const todoFileName = ".todos.json"
 
 func main() {
-	l := &todo.List{}
+	task := flag.String("task", "", "Add task")
+	list := flag.Bool("list", false, "List tasks")
+	complete := flag.Int("complete", 0, "Index of item to mark as complete")
+
+	flag.Parse()
+
+	l := &todov1.List{}
 
 	if err := l.Get(todoFileName); err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -19,19 +25,35 @@ func main() {
 	}
 
 	switch {
-	case len(os.Args) == 1:
+	case *list:
 		for _, item := range *l {
-			fmt.Println(item.Task)
+			if !item.Done {
+				fmt.Println(item.Task)
+			}
 		}
-	default:
-		// Concat all args with a space.
-		item := strings.Join(os.Args[1:], " ")
-		l.Add(item)
+
+	case *complete > 0:
+		if err := l.Complete(*complete); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
 
 		if err := l.Save(todoFileName); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
+
+	case *task != "":
+		l.Add(*task)
+
+		if err := l.Save(todoFileName); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+
+	default:
+		fmt.Fprintln(os.Stderr, "Invalid option")
+		os.Exit(1)
 	}
 }
 
