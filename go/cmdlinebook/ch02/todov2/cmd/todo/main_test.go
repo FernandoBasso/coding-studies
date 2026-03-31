@@ -74,7 +74,7 @@ func TestTestTodoCLI(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		want := task + "\n"
+		want := "[ ] 1: " + task + "\n"
 
 		if string(out) != want {
 			t.Errorf("Want %q, got %q", want, string(out))

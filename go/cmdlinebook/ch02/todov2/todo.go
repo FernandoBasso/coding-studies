@@ -1,3 +1,4 @@
+// Package todo is a command line todo list app.
 package todo
 
 import (
@@ -82,4 +83,22 @@ func (l *List) Get(filename string) error {
 	}
 
 	return json.Unmarshal(file, l)
+}
+
+func (l *List) String() string {
+	output := ""
+
+	for idx, todo := range *l {
+		check := "  "
+		if todo.Done {
+			check = "[✔]"
+		} else {
+			check = "[ ]"
+		}
+
+		// idx+1 output indexes from 1 instead of 0.
+		output += fmt.Sprintf("%s %d: %s\n", check, idx+1, todo.Task)
+	}
+
+	return output
 }
