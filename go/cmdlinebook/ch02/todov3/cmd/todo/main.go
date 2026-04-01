@@ -1,3 +1,19 @@
+////
+// How to run this program:
+//
+// $ TODO_FILENAME=db.json go run main.go -task 'Learn Go'
+//
+// $ 0< db.json jq
+// [
+//   {
+//     "Task": "Learn Go",
+//     "Done": false,
+//     "CreatedAt": "2026-04-01T07:55:39.464827815-03:00",
+//     "CompletedAt": "0001-01-01T00:00:00Z"
+//   }
+// ]
+////
+
 package main
 
 import (
@@ -8,7 +24,8 @@ import (
 	"devhowto.dev/gocmdlinebook/ch02/todo"
 )
 
-const todoFileName = ".todos.json"
+// Default unless overridden with TODO_FILENAME env var.
+var todoFileName = ".todos.json"
 
 func main() {
 	flag.Usage = func() {
@@ -23,6 +40,10 @@ func main() {
 	flag.Parse()
 
 	l := &todo.List{}
+
+	if os.Getenv("TODO_FILENAME") != "" {
+		todoFileName = os.Getenv("TODO_FILENAME")
+	}
 
 	if err := l.Get(todoFileName); err != nil {
 		fmt.Fprintln(os.Stderr, err)
