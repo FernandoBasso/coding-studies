@@ -1,4 +1,4 @@
-// Package todo is a command line todo list app.
+// Package todo implements a command-line todo application.
 package todo
 
 import (
@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -86,7 +87,7 @@ func (l *List) Get(filename string) error {
 }
 
 func (l *List) String() string {
-	output := ""
+	var output strings.Builder
 
 	for idx, todo := range *l {
 		check := "  "
@@ -97,8 +98,8 @@ func (l *List) String() string {
 		}
 
 		// idx+1 output indexes from 1 instead of 0.
-		output += fmt.Sprintf("%s %d: %s\n", check, idx+1, todo.Task)
+		output.WriteString(fmt.Sprintf("%s %d: %s\n", check, idx+1, todo.Task))
 	}
 
-	return output
+	return output.String()
 }
