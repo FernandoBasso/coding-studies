@@ -2,6 +2,7 @@ package main_test
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -49,7 +50,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestTestTodoCLI(t *testing.T) {
-	task := "Task 1"
+	task1 := "Task 1"
 
 	dir, err := os.Getwd()
 	if err != nil {
@@ -60,7 +61,24 @@ func TestTestTodoCLI(t *testing.T) {
 	fmt.Printf("%#v", cmdPath)
 
 	t.Run("can add a task", func(t *testing.T) {
-		cmd := exec.Command(cmdPath, "-task", task)
+		cmd := exec.Command(cmdPath, "-add", task1)
+
+		if err := cmd.Run(); err != nil {
+			t.Fatal(err)
+		}
+	})
+
+	task2 := "Task 2"
+
+	t.Run("can add a second task", func(t *testing.T) {
+		cmd := exec.Command(cmdPath, "-add")
+		cmdStdin, err := cmd.StdinPipe()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		io.WriteString(cmdStdin, task2)
+		cmdStdin.Close()
 
 		if err := cmd.Run(); err != nil {
 			t.Fatal(err)
@@ -74,7 +92,7 @@ func TestTestTodoCLI(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		want := "[ ] 1: " + task + "\n"
+		want := "[ ] 1: " + task1 + "\n[ ] 2: " + task2 + "\n"
 
 		if string(out) != want {
 			t.Errorf("Want %q, got %q", want, string(out))
