@@ -38,11 +38,13 @@ import (
 var todoFileName = ".todos.json"
 
 func main() {
-	desc := fmt.Sprintf(`
+	intro := fmt.Sprintf(`
 The program accepts TODO_FILENAME environment variable to specify
 the database file name. Defaults to %s.
+`, todoFileName)
 
-Example:
+	examples := `
+EXAMPLES:
 
     $ TODO_FILENAME=mytodo.json go run main.go -add "Learn TDD"
 
@@ -54,15 +56,15 @@ Or, export the env var first:
 Then, we can inspect the mytodo.json file:
 
     $ 0< mytodo.json jq
-`,
-		todoFileName)
+`
 
 	flag.Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(), "\n== Command Line TODO app! ==\n")
 		fmt.Fprintf(flag.CommandLine.Output(), "----------------------------\n")
-		fmt.Fprintf(flag.CommandLine.Output(), "%s\n", desc)
+		fmt.Fprintf(flag.CommandLine.Output(), "%s\n", intro)
 		fmt.Fprintf(flag.CommandLine.Output(), "%s\n\n", "OPTIONS:")
 		flag.PrintDefaults()
+		fmt.Fprintf(flag.CommandLine.Output(), "%s", examples)
 	}
 
 	add := flag.Bool("add", false, "Add task from args or STDIN\n")
