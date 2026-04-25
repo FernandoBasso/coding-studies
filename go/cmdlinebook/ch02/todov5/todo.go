@@ -10,6 +10,10 @@ import (
 	"time"
 )
 
+// MyNow should be called instead of time.Now in this module. It helps
+// in unit tests.
+var MyNow = time.Now
+
 type item struct {
 	Task        string
 	Done        bool
@@ -25,7 +29,7 @@ func (l *List) Add(task string) {
 	t := item{
 		Task:        task,
 		Done:        false,
-		CreatedAt:   time.Now(),
+		CreatedAt:   MyNow(),
 		CompletedAt: time.Time{},
 	}
 
@@ -40,7 +44,7 @@ func (l *List) Complete(i int) error {
 	}
 
 	(*l)[i-1].Done = true
-	(*l)[i-1].CompletedAt = time.Now()
+	(*l)[i-1].CompletedAt = MyNow()
 
 	return nil
 }
@@ -98,7 +102,7 @@ func (l *List) String() string {
 		}
 
 		// idx+1 output indexes from 1 instead of 0.
-		output.WriteString(fmt.Sprintf("%s %d: %s\n", check, idx+1, todo.Task))
+		fmt.Fprintf(&output, "%s %d: %s\n", check, idx+1, todo.Task)
 	}
 
 	return output.String()

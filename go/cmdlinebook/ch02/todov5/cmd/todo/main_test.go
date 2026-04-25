@@ -8,6 +8,9 @@ import (
 	"path/filepath"
 	"runtime"
 	"testing"
+	"time"
+
+	"devhowto.dev/gocmdlinebook/ch02/todo"
 )
 
 var (
@@ -50,6 +53,8 @@ func TestMain(m *testing.M) {
 }
 
 func TestTestTodoCLI(t *testing.T) {
+	now := func() time.Time { return todo.MyNow() }
+
 	task1 := "Task 1"
 
 	dir, err := os.Getwd()
@@ -81,7 +86,7 @@ func TestTestTodoCLI(t *testing.T) {
 		cmdStdin.Close()
 
 		if err := cmd.Run(); err != nil {
-			t.Fatal(err)
+
 		}
 	})
 
@@ -93,6 +98,24 @@ func TestTestTodoCLI(t *testing.T) {
 		}
 
 		want := "[ ] 1: " + task1 + "\n[ ] 2: " + task2 + "\n"
+
+		if string(out) != want {
+			t.Errorf("Want %q, got %q", want, string(out))
+		}
+	})
+
+	t.Run("can list tasks in verbose mode", func(t *testing.T) {
+		cmd := exec.Command(cmdPath, "-list", "-verbose")
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		task1now := now().Format(time.DateTime)
+
+		want := fmt.Sprintf(`[ ] 1: Task 1, Created at: %s
+[ ] 2: Task 2, Created at: %s
+`, task1now, task1now)
 
 		if string(out) != want {
 			t.Errorf("Want %q, got %q", want, string(out))

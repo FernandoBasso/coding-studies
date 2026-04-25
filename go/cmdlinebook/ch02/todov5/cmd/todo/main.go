@@ -30,6 +30,7 @@ import (
 	"io"
 	"os"
 	"strings"
+	"time"
 
 	"devhowto.dev/gocmdlinebook/ch02/todo"
 )
@@ -70,6 +71,7 @@ Then, we can inspect the mytodo.json file:
 	add := flag.Bool("add", false, "Add task from args or STDIN\n")
 	del := flag.Int("del", 0, "Delete item at the given index\n")
 	list := flag.Bool("list", false, "List tasks\n")
+	verbose := flag.Bool("verbose", false, "Verbose mode (only valid for -list)")
 	complete := flag.Int("complete", 0, "Complete item at the given index\n")
 
 	flag.Parse()
@@ -87,7 +89,31 @@ Then, we can inspect the mytodo.json file:
 
 	switch {
 	case *list:
-		fmt.Print(l)
+		if *verbose {
+			var output strings.Builder
+
+			for idx, todo := range *l {
+				check := "  "
+				if todo.Done {
+					check = "[✔]"
+				} else {
+					check = "[ ]"
+				}
+
+				date := todo.CreatedAt.Format(time.DateTime)
+
+				// idx+1 output indexes from 1 instead of 0.
+				fmt.Fprintf(&output, "%s %d: %s, Created at: %s\n",
+					check,
+					idx+1,
+					todo.Task,
+					date)
+			}
+
+			fmt.Print(output.String())
+		} else {
+			fmt.Print(l)
+		}
 
 	case *complete > 0:
 		if err := l.Complete(*complete); err != nil {
