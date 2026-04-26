@@ -122,6 +122,29 @@ func TestTestTodoCLI(t *testing.T) {
 		}
 	})
 
+	t.Run("can mark a task as complete", func(t *testing.T) {
+		completeCmd := exec.Command(cmdPath, "-complete", "1")
+		if err := completeCmd.Run(); err != nil {
+			t.Fatal(err)
+		}
+
+		listCmd := exec.Command(cmdPath, "-list", "-verbose")
+		out, err := listCmd.CombinedOutput()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		created := now().Format(time.DateTime)
+
+		want := fmt.Sprintf(`[✔] 1: Task 1, Created at: %s
+[ ] 2: Task 2, Created at: %s
+`, created, created)
+
+		if string(out) != want {
+			t.Errorf("Want %q, got %q", want, string(out))
+		}
+	})
+
 	t.Run("can delete tasks", func(t *testing.T) {
 		//
 		// At this point we have task 1 an task 2 from earlier tests.
