@@ -111,11 +111,11 @@ func TestTestTodoCLI(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		task1now := now().Format(time.DateTime)
+		created := now().Format(time.DateTime)
 
 		want := fmt.Sprintf(`[ ] 1: Task 1, Created at: %s
 [ ] 2: Task 2, Created at: %s
-`, task1now, task1now)
+`, created, created)
 
 		if string(out) != want {
 			t.Errorf("Want %q, got %q", want, string(out))
