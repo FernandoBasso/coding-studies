@@ -55,7 +55,7 @@ func TestMain(m *testing.M) {
 func TestTestTodoCLI(t *testing.T) {
 	now := func() time.Time { return todo.MyNow() }
 
-	task1 := "Task 1"
+	task1 := "Learn Go"
 
 	dir, err := os.Getwd()
 	if err != nil {
@@ -73,7 +73,7 @@ func TestTestTodoCLI(t *testing.T) {
 		}
 	})
 
-	task2 := "Task 2"
+	task2 := "Play TRI"
 
 	t.Run("can add a second task", func(t *testing.T) {
 		cmd := exec.Command(cmdPath, "-add")
@@ -86,7 +86,7 @@ func TestTestTodoCLI(t *testing.T) {
 		cmdStdin.Close()
 
 		if err := cmd.Run(); err != nil {
-
+			t.Fatal(err)
 		}
 	})
 
@@ -97,10 +97,12 @@ func TestTestTodoCLI(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		want := "[ ] 1: " + task1 + "\n[ ] 2: " + task2 + "\n"
+		want := fmt.Sprintf(`[ ] 1: %s
+[ ] 2: %s
+`, task1, task2)
 
 		if string(out) != want {
-			t.Errorf("Want %q, got %q", want, string(out))
+			wantQ(t, want, string(out))
 		}
 	})
 
@@ -113,12 +115,12 @@ func TestTestTodoCLI(t *testing.T) {
 
 		created := now().Format(time.DateTime)
 
-		want := fmt.Sprintf(`[ ] 1: Task 1, Created at: %s
-[ ] 2: Task 2, Created at: %s
+		want := fmt.Sprintf(`[ ] 1: Learn Go, Created at: %s
+[ ] 2: Play TRI, Created at: %s
 `, created, created)
 
 		if string(out) != want {
-			t.Errorf("Want %q, got %q", want, string(out))
+			wantQ(t, want, string(out))
 		}
 	})
 
@@ -136,18 +138,39 @@ func TestTestTodoCLI(t *testing.T) {
 
 		created := now().Format(time.DateTime)
 
-		want := fmt.Sprintf(`[✔] 1: Task 1, Created at: %s
-[ ] 2: Task 2, Created at: %s
+		want := fmt.Sprintf(`[✔] 1: Learn Go, Created at: %s
+[ ] 2: Play TRI, Created at: %s
 `, created, created)
 
 		if string(out) != want {
-			t.Errorf("Want %q, got %q", want, string(out))
+			wantQ(t, want, string(out))
+		}
+	})
+
+	t.Run("can list incomplete tasks only", func(t *testing.T) {
+		//
+		// The previous test marked Learn Go as complete.
+		//
+
+		listCmd := exec.Command(cmdPath, "-list", "-verbose", "-pending")
+		out, err := listCmd.CombinedOutput()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		created := now().Format(time.DateTime)
+
+		want := fmt.Sprintf("[ ] 1: Play TRI, Created at: %s\n", created)
+
+		if string(out) != want {
+			wantQ(t, want, string(out))
+			t.Errorf("\n\nWant:\n%q\ngot:\n%q\n\n", want, string(out))
 		}
 	})
 
 	t.Run("can delete tasks", func(t *testing.T) {
 		//
-		// At this point we have task 1 an task 2 from earlier tests.
+		// At this point we have Learn Go an Play TRI from earlier tests.
 		// They have indexes 1 and 2.
 		//
 
@@ -163,7 +186,7 @@ func TestTestTodoCLI(t *testing.T) {
 		}
 
 		//
-		// Now that task 1 was removed, task 2 gets “moved” to index 1.
+		// Now that Learn Go was removed, Play TRI gets “moved” to index 1.
 		//
 		want := "[ ] 1: " + task2 + "\n"
 
@@ -171,4 +194,8 @@ func TestTestTodoCLI(t *testing.T) {
 			t.Errorf("Want %q, got %q", want, string(out))
 		}
 	})
+}
+
+func wantQ(t *testing.T, want, got string) {
+	t.Errorf("\n\nWant:\n%q\ngot:\n%q\n\n", want, got)
 }

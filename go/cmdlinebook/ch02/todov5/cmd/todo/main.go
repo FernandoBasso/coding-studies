@@ -71,8 +71,9 @@ Then, we can inspect the mytodo.json file:
 	add := flag.Bool("add", false, "Add task from args or STDIN\n")
 	del := flag.Int("del", 0, "Delete item at the given index\n")
 	list := flag.Bool("list", false, "List tasks\n")
-	verbose := flag.Bool("verbose", false, "Verbose mode (only valid for -list)")
+	verbose := flag.Bool("verbose", false, "Verbose mode (only valid for -list)\n")
 	complete := flag.Int("complete", 0, "Complete item at the given index\n")
+	pending := flag.Bool("pending", false, "List only incomplete tasks\n")
 
 	flag.Parse()
 
@@ -89,31 +90,47 @@ Then, we can inspect the mytodo.json file:
 
 	switch {
 	case *list:
-		if *verbose {
-			var output strings.Builder
+		var output strings.Builder
+		var skipped = 0
+		var i = 1
 
-			for idx, todo := range *l {
-				check := "  "
-				if todo.Done {
-					check = "[✔]"
-				} else {
-					check = "[ ]"
-				}
+		for idx, todo := range *l {
+			check := "  "
 
-				date := todo.CreatedAt.Format(time.DateTime)
-
-				// idx+1 output indexes from 1 instead of 0.
-				fmt.Fprintf(&output, "%s %d: %s, Created at: %s\n",
-					check,
-					idx+1,
-					todo.Task,
-					date)
+			if todo.Done {
+				check = "[✔]"
+			} else {
+				check = "[ ]"
 			}
 
-			fmt.Print(output.String())
-		} else {
-			fmt.Print(l)
+			date := todo.CreatedAt.Format(time.DateTime)
+			created := fmt.Sprintf(", Created at: %s", date)
+
+			if *pending {
+				if todo.Done {
+					skipped += 1
+					continue
+				}
+
+				i = idx + 1 - skipped
+
+				fmt.Fprintf(&output, "%s %d: %s",
+					check,
+					i,
+					todo.Task,
+				)
+			} else {
+				fmt.Fprintf(&output, "%s %d: %s", check, idx+1, todo.Task)
+			}
+
+			if *verbose {
+				fmt.Fprintf(&output, "%s\n", created)
+			} else {
+				fmt.Fprintf(&output, "\n")
+			}
 		}
+
+		fmt.Print(output.String())
 
 	case *complete > 0:
 		if err := l.Complete(*complete); err != nil {
