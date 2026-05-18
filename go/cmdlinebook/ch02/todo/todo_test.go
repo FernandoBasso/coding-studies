@@ -3,6 +3,8 @@ package todo_test
 import (
 	"testing"
 
+	"github.com/google/uuid"
+
 	"todo"
 )
 
@@ -10,18 +12,18 @@ func TestTodo(t *testing.T) {
 	t.Run("Add())", func(t *testing.T) {
 		t.Run("returns an error when the title is empty", func(t *testing.T) {
 			todo := todo.Todo{}
-			if err := todo.Add(""); err == nil {
+			if _, err := todo.Add(""); err == nil {
 				wantQ(t, "an error", "nil")
 			}
 		})
 
 		t.Run("successfully adds a task", func(t *testing.T) {
 			todo := todo.Todo{}
-			if err := todo.Add("Learn TDD"); err != nil {
+			task, err := todo.Add("Learn TDD")
+			if err != nil {
 				t.Fatal(err)
 			}
 
-			task := todo.Tasks[0]
 			if task.Title != "Learn TDD" {
 				wantQ(t, "Learn TDD", task.Title)
 			}
