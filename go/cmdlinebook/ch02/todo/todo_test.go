@@ -36,8 +36,6 @@ func TestTodo(t *testing.T) {
 			todo.Add("Learn DDD")
 			todo.Add("Learn TDD")
 
-			// Let's assume we'll not have an ID of 9001 while
-			// the tests are running.
 			lastTask := todo.FindByID(uuid.New())
 			if !lastTask.IsZero() {
 				wantQ(t, "an empty task", "a valid, filled-in task")
@@ -73,6 +71,31 @@ func TestTodo(t *testing.T) {
 			todo.Complete(taskDDD.ID)
 			if todo.FindByID(taskDDD.ID).CompletedAt.IsZero() {
 				wantQ(t, "a CompletedAt date", "a zero-valued CreatedAt date")
+			}
+		})
+	})
+
+	t.Run("Delete())", func(t *testing.T) {
+		t.Run("returns an error when a task to delete is not found", func(t *testing.T) {
+			todo := todo.New()
+
+			_, err := todo.Delete(uuid.New())
+			if err == nil {
+				wantQ(t, "an error", "nil")
+			}
+		})
+
+		t.Run("returns the task being deleted, and removes it from the collection", func(t *testing.T) {
+			todo := todo.New()
+			learnGoAdded, _ := todo.Add("Learn Go")
+
+			learnGoRemoved, err := todo.Delete(learnGoAdded.ID)
+			if err != nil {
+				wantQ(t, "no error", "an error")
+			}
+
+			if emptyTask := todo.FindByID(learnGoRemoved.ID); !emptyTask.IsZero() {
+				wantQ(t, "empty task (because it was not found)", "a non empty task")
 			}
 		})
 	})
