@@ -2,8 +2,10 @@
 package todo
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -16,14 +18,14 @@ type task struct {
 	CompletedAt time.Time
 }
 
-type todo struct {
+type todoApp struct {
 	Tasks map[uuid.UUID]task
 }
 
 // New returns a new todo with a slice of tasks with an initial
 // capacity of 32.
-func New() *todo {
-	return &todo{
+func New() *todoApp {
+	return &todoApp{
 		Tasks: make(map[uuid.UUID]task, 32),
 	}
 }
@@ -36,7 +38,7 @@ func (t *task) IsZero() bool {
 // Add adds a new task to the collection and returns the task and a nil
 // error, or, returns an empty task and an error the given task title is
 // empty.
-func (t *todo) Add(title string) (task, error) {
+func (t *todoApp) Add(title string) (task, error) {
 	if title == "" {
 		return task{}, errors.New("task title cannot be empty")
 	}
@@ -54,7 +56,7 @@ func (t *todo) Add(title string) (task, error) {
 }
 
 // FindByID returns a task found by ID, or a zero-valued task ID not found.
-func (t *todo) FindByID(id uuid.UUID) task {
+func (t *todoApp) FindByID(id uuid.UUID) task {
 	for _, item := range t.Tasks {
 		if item.ID == id {
 			return item
@@ -68,7 +70,7 @@ func (t *todo) FindByID(id uuid.UUID) task {
 // CompletedAt with time.Now()), and returns the completed task and a
 // nil error. Returns a zero-valued task and an error if the task with
 // the given id cannot be found.
-func (t *todo) Complete(id uuid.UUID) (task, error) {
+func (t *todoApp) Complete(id uuid.UUID) (task, error) {
 	taskToComplete := t.FindByID(id)
 	if taskToComplete.IsZero() {
 		return task{},
@@ -85,7 +87,7 @@ func (t *todo) Complete(id uuid.UUID) (task, error) {
 // Delete deletes the task with the given id, and returns the deleted
 // task and a nil error. If the task with the given id is not found,
 // returns a zero-valued task and an error.
-func (t *todo) Delete(id uuid.UUID) (task, error) {
+func (t *todoApp) Delete(id uuid.UUID) (task, error) {
 	taskToDelete, ok := t.Tasks[id]
 	if !ok {
 		return task{}, fmt.Errorf("could not find task with id %s", id)
@@ -94,4 +96,29 @@ func (t *todo) Delete(id uuid.UUID) (task, error) {
 	delete(t.Tasks, id)
 
 	return taskToDelete, nil
+}
+
+// Save converts the task list to JSON and saves to fileName. Returns an
+// error if either json conversion or writing the file fails.
+func (t *todoApp) Save(fileName string) error {
+	json, err := json.Marshal(t.Tasks)
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(fileName, json, 0644)
+}
+
+// Load loads a todo list from fileName and returns an error if the file
+// cannot be read or the data cannot be converted to the internal todo
+// list representation.
+func (t *todoApp) Load(fileName string) error {
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		return err
+	}
+
+	json.Unmarshal(data, &t.Tasks)
+
+	return nil
 }

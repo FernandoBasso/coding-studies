@@ -11,8 +11,8 @@ import (
 func TestTodo(t *testing.T) {
 	t.Run("Add())", func(t *testing.T) {
 		t.Run("returns an error when the title is empty", func(t *testing.T) {
-			todo := todo.New()
-			if _, err := todo.Add(""); err == nil {
+			td := todo.New()
+			if _, err := td.Add(""); err == nil {
 				wantQ(t, "an error", "nil")
 			}
 		})
@@ -96,6 +96,36 @@ func TestTodo(t *testing.T) {
 
 			if emptyTask := todo.FindByID(learnGoRemoved.ID); !emptyTask.IsZero() {
 				wantQ(t, "empty task (because it was not found)", "a non empty task")
+			}
+		})
+	})
+
+	t.Run("Save())", func(t *testing.T) {
+		t.Run("returns error if there is a problem saving db to a file", func(t *testing.T) {
+			todo := todo.New()
+			todo.Add("Learn DDD")
+
+			err := todo.Save("/path/that/does/not/exist/db_todos.json")
+			if err == nil {
+				wantQ(t, "an error", "nil")
+			}
+		})
+
+		t.Run("can persist and load the todos", func(t *testing.T) {
+			todoToSave := todo.New()
+			task, _ := todoToSave.Add("Learn Haskell")
+			//
+			err := todoToSave.Save("./db_todos.json")
+			if err != nil {
+				t.Fatalf("could not save file to ./db_todos.json\n%s", err)
+			}
+
+			todoToLoad := todo.New()
+			todoToLoad.Load("./db_todos.json")
+
+			found := todoToLoad.FindByID(task.ID)
+			if found.Title != "Learn Haskell" {
+				wantQ(t, "Learn Haskell", found.Title)
 			}
 		})
 	})
