@@ -1,6 +1,6 @@
 declare -A headers
-headers[Accept]='application/json'
-headers[Content-Type]='application/json'
+headers[Accept]='text/html'
+headers[Content-Type]='text/html'
 
 args=()
 
@@ -9,7 +9,12 @@ do
 	args+=( -H "$key: ${headers[$key]}")
 done
 
-curl -s "${args[@]}" https://example.com
+echo "${args[@]}"
+printf '%q\n' "${args[@]}"
+printf '%Q\n' "${args[@]}"
+
+
+# curl -s "${args[@]}" https://example.com
 
 1> /dev/null cat <<'EOF'
 06:48:10       monkfish | just have one headers map where the key is the header name and

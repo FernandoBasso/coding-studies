@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "name": "C: Debug with args",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": ["It works!", "They said I was mad but it works!!!"],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "C: Compile active C file",
+      "miDebuggerPath": "/usr/bin/gdb"
+    }
+  ]
+}
