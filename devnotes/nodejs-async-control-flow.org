@@ -1,0 +1,37 @@
+#+TITLE: Asynchronous Work in Node.js
+#+AUTHOR: Fernando Basso
+#+STARTUP: content
+
+* Callbacks
+
+**NOTE**: These are my WIP research notes.
+
+https://nodejs.org/learn/asynchronous-work/javascript-asynchronous-programming-and-callbacks
+
+JavaScript is synchronous by default; and single-threaded.
+
+Lines of code run one after another.
+
+The browser and node.js provide an environment that can handle
+asynchronous operations.
+
+We don’t know when something will happen (a click of a button, the
+window loads, a file upload finishes, a write to the database is
+complete, etc.), so, we listen to an event and call a function when
+that event happens.
+
+#+begin_src javascript
+btn.addEventListener('click', function btnClicked() {
+  // The button was clicked.
+});
+
+window.addEventListener('load', function windowLoaded() {
+  // The page as loaded.
+});
+
+// Do this at 2 secons or a bit later.
+setTimeout(function afterTwoSeconds() {
+ // Two seconds (or a bit more) have passed.
+}, 2000);
+#+end_src
+
