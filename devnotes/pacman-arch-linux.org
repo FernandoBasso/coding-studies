@@ -1,0 +1,40 @@
+#+TITLE: Pacman (Arch Linux)
+#+AUTHOR: Fernando Basso
+#+STARTUP: content
+
+* Which package contains a given file
+
+Suppose you get an error with some program saying a certain file or
+program does not exist. For example, while trying to export an Emacs
+Org-mode file to latex, you see this:
+
+#+BEGIN_EXAMPLE
+! LaTeX Error: File `ulem.sty' not found.
+#+END_EXAMPLE
+
+So, which package provides =ulem.sty=?
+
+It so happens that =pacman= provides the ~--files~ / ~-F~ flag.
+
+#+BEGIN_QUOTE
+-F, --files Query the files database. This operation allows you to
+    look for pack‐ ages owning certain files or display files owned
+    by certain packages.  Only packages that are part of your sync
+    databases are searched. See File Options below.
+#+END_QUOTE
+
+So:
+
+#+BEGIN_SRC text
+$ sudo pacman --files ulem.sty
+extra/texlive-plaingeneric 2026.1-1 (texlive)
+    usr/share/texmf-dist/tex/generic/ulem/ulem.sty
+#+END_SRC
+
+Another option is to use ~pkgfile~:
+
+#+BEGIN_SRC text
+$ sudo pacman --sync --refresh --needed pkgfile
+$ sudo pkgfile --update
+$ pkgfile --search uelm.sty
+#+END_SRC
