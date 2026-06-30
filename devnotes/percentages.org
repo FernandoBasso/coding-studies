@@ -1,0 +1,27 @@
+#+TITLE: Node.js Callbacks
+#+AUTHOR: Fernando Basso
+#+STARTUP: content latexpreview
+
+* Intro
+
+When we say something like “16 is 20% of 80”, 16 is the /percentage/, 20
+is the /percent/, and 80 is the base (or quantity).
+
+Let \(p\) be the /percent/, \(n\) be the /percentage/, and \(b\) be the /base/.
+
+* Find the percentage of some base
+
+For example, what is 20% of 80?
+
+Formula:
+
+\begin{equation}
+\frac{p}{100} * b = n
+\end{equation}
+
+Substituting and solving:
+
+- \(\frac{20}{100} \times{80} = n\)
+- \(0.2 \times{80} = n\)
+- \(16 = n\)
+
