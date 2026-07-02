@@ -4,10 +4,12 @@
 
 * Intro
 
-When we say something like “16 is 20% of 80”, 16 is the /percentage/, 20
-is the /percent/, and 80 is the base (or quantity).
+When we say something like “16 is 20% of 80”:
 
-Let \(p\) be the /percent/, \(n\) be the /percentage/, and \(b\) be the /base/.
+- 16 is the /percentage/ or the *part* \(p\).
+- 20 is the /percent/ or *ratio* \(r\).
+- 80 is the /quantity/ or *base* \(b\).
+
 
 * Find the percentage of some base
 
@@ -16,12 +18,12 @@ For example, what is 20% of 80?
 Formula:
 
 \begin{equation}
-\frac{p}{100} * b = n
+\frac{r}{100} * b = p
 \end{equation}
 
 Substituting and solving:
 
-- \(\frac{20}{100} \times{80} = n\)
-- \(0.2 \times{80} = n\)
-- \(16 = n\)
+- \(\frac{20}{100} \times{80} = p\)
+- \(0.2 \times{80} = p\)
+- \(16 = p\)
 
