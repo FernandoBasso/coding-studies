@@ -1,0 +1,137 @@
+= Percentages
+:page-subtitle: Common Percentage Problems
+:page-tags: math percent ratio
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:source-highlighter: highlight.js
+:experimental:
+:stem: latexmath
+:toc: left
+:imagesdir: __assets
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+
+== Introduction
+
+When we say something like “16 is 20% of 80”, 16 is the *percentage* or *part*, 20 is the *percent* or *ratio*, and 80 is the *quantity* or *base*.
+
+Let _p_ be the *part* (percentage), _r_ be the *ratio* (percent), and _b_ be the *base*.
+
+== Add or subtract p% of a base
+
+Suppose something costs 80 (whatever currency).
+How could we add 12% extra fee on top of that amount?
+Or how could we give a discount of 12% on that amount?
+
+To add 12% to 80, we multiply 80 by stem:[1 + 0.12]:
+
+[stem]
+++++
+80 \times (1 + 0.12) = 89.6
+++++
+
+To subtract 12% from 80, multiply 80 by stem:[1 - 0.12]:
+
+[stem]
+++++
+80 \times (1 - 0.12) = 70.4
+++++
+
+stem:[1 + 0.12] can be thought of 100% of a number plus 12% of that number. 100 % of 80 is 80, and 12% of 80 is 9.6, therefore, 100% of 80 plus 12% of 80 is 80 + 96, which is 89.6.
+
+Similarly, $1 - 0.12$ can be thought of 100% a number minus 12% of that number. 100% of 80 is 80 and -12% of 80 is -9.6, therefore, 100% of 80 minus -12% of 80 is 80 - 9.6, which is  70.4.
+
+== Find the part given the ratio and the base
+
+What is 20% of 80?
+We know 20 is the ratio _r_, 80 is the base _b_, and we want to find the part _p_.
+
+The formula is:
+
+[stem]
+++++
+\frac{r}{100} \times b = p
+++++
+
+Substituting and solving:
+
+* stem:[\frac{20}{100}\times{80}=p]
+* stem:[0.2\times{80} = p]
+* stem:[16 = p]
+
+Therefore, 20% of 80 is 16 (16 parts of 80).
+
+== Find the ratio given the part and the base
+
+16 is what percent of 80?
+We know that the part _p_ is 16, and that the base _b_ is 80.
+We want to find ratio _r_.
+
+The formula is:
+
+[stem]
+++++
+\frac{p}{b}\times{100} = r
+++++
+
+Substituting and solving:
+
+* stem:[\frac{16}{80}\times{100} = r]
+* stem:[0.2\times{100} = r]
+* stem:[20 = r]
+
+Therefore, 16 is 20% of 80.
+
+== Find the base given the part and the ratio
+
+16 is 20% of what base?
+
+We know the part _p_ is 16, and that the ratio _r_ is 20.
+We want to find the base _b_.
+
+The formula is:
+
+[stem]
+++++
+\frac{p}{r}\times{100} = b
+++++
+
+Substituting and solving:
+
+* stem:[\frac{16}{20}\times{100} = b]
+* stem:[0.8\times{100} = b]
+* stem:[80 = b]
+
+Therefore, 16 is 20% of 80.
+
+== Find out if a value is within percentage another
+
+While trying to prevent a link:https://exercism.org/tracks/python/exercises/meltdown-mitigation[reactor meltdown (see step 3)], I came across a percentage problem: I needed to know if a given number was within a certain percentage of another number.
+
+For example, is _y_ within _p_% of _x_?
+
+A concrete example: is 49 within 12% of 60?
+
+How much is 12% of 60?
+
+stem:[\frac{12}{100} \times 60 = 0.12], and stem:[0.12 \times 60 = 7.2], so 12% of 60 is 7.2, which means 7.2 is the allowed difference below and/or above 60.
+
+- Lower bound stem:[60 - 7.2 = 52.8].
+- Upper bound stem:[60 + 7.2 = 72.2].
+
+Since stem:[49 \lt 52.8], it means 49 is *not* within 12% of 60.
+
+Let _d_ be the difference, and _x_ be the original value:
+
+```text
+if x - d < x < x + d
+```
