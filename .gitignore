@@ -55,3 +55,9 @@ target
 # Language Server Protocol.
 #
 .lsp
+
+##
+# Org-mode LaTex-generated image previews and other artifacts.
+#
+ltximg
+*.tex
