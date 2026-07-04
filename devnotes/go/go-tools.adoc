@@ -1,0 +1,57 @@
+= Go Tools
+:page-subtitle:
+:page-tags: go tools gopls
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:source-highlighter: highlight.js
+:experimental:
+:stem: latexmath
+:toc: left
+:imagesdir: __assets
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== gopls (language server)
+
+[source,shell]
+----
+$ go install golang.org/x/tools/gopls@latest
+$ gopls -help
+----
+
+== lint
+
+https://golangci-lint.run/docs/welcome/install/local/
+
+Binary will be `$(go env GOPATH)/bin/golangci-lint`:
+
+[source,shell]
+----
+$ curl -sSfL https://golangci-lint.run/install.sh | \
+    sh -s -- -b $(go env GOBIN) v2.11.4
+----
+
+Or install it into `./bin/`:
+
+[source,shell]
+----
+$ curl -sSfL https://golangci-lint.run/install.sh | \
+    sh -s v2.11.4
+
+golangci-lint --version
+----
+
+Then:
+
+[source,shell]
+----
+$ golangci-lint --version
+----
