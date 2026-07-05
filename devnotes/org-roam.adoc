@@ -1,0 +1,35 @@
+= Org-roam
+:page-subtitle: My notes and references on Emacs Org-roam
+:page-tags: emacs, org-mode, org-roam
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:source-highlighter: highlight.js
+:experimental:
+:stem: latexmath
+:toc: left
+:imagesdir: __assets
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== Intro
+
+* https://www.orgroam.com/[Org-roam website^].
+* https://www.orgroam.com/manual.html[Org-roam online manual^].
+* https://org-roam.discourse.group/[Org-roam forum on Discourse^].
+
+== Preview and publissh
+
+* https://github.com/org-roam/org-roam-ui[Org-roam UI^].
+* https://org-roam.discourse.group/t/org-roam-ui-lite/3852[Initial
+  Org-roam UI Lite post on Discourse^].
+* https://github.com/ikoamu/publish-org-roam-ui[Github action to publish
+  Org-roam UI to Github pages^].
+* https://www.asterhu.com/post/20240220-publish-org-roam-with-quartz-oxhugo/[Tutorial on how to publish Org-roam notes with ox-hugo and Quartz^].
