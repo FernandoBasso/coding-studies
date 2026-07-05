@@ -48,7 +48,7 @@ To subtract 12% from 80, multiply 80 by stem:[1 - 0.12]:
 
 stem:[1 + 0.12] can be thought of 100% of a number plus 12% of that number. 100 % of 80 is 80, and 12% of 80 is 9.6, therefore, 100% of 80 plus 12% of 80 is 80 + 96, which is 89.6.
 
-Similarly, $1 - 0.12$ can be thought of 100% a number minus 12% of that number. 100% of 80 is 80 and -12% of 80 is -9.6, therefore, 100% of 80 minus -12% of 80 is 80 - 9.6, which is  70.4.
+Similarly, stem:[1 - 0.12] can be thought of 100% a number minus 12% of that number. 100% of 80 is 80 and -12% of 80 is -9.6, therefore, 100% of 80 minus -12% of 80 is 80 - 9.6, which is  70.4.
 
 == Find the part given the ratio and the base
 
