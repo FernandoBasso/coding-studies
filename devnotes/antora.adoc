@@ -1,0 +1,34 @@
+= Antora
+:page-subtitle: Common Percentage Problems
+:page-tags: math percent ratio
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:source-highlighter: highlight.js
+:experimental:
+:stem: latexmath
+:toc: left
+:imagesdir: __assets
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+
+== Intro
+
+- https://antora.org/
+ -https://docs.antora.org/antora/latest/
+
+== Local watch mode
+
+Local watch mode while authoring is not available in Antora.
+There are a few scripts and workarounds, though:
+
+- https://gitlab.com/antora/antora/-/work_items/329
+
