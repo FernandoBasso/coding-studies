@@ -1,0 +1,27 @@
+= AdocWiki
+:page-subtitle: My attempt to have an easy to use wiki with
+AsciiDoc[tor] as the markup language
+:page-tags:
+:favicon: https://fernandobasso.dev/cmdline.png
+:icons: font
+:sectlinks:
+:sectnums!:
+:toclevels: 6
+:toc: left
+:source-highlighter: highlight.js
+:stem: latexmath
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== Ideas
+
+AdocWiki is *not* a documentation website for a single project or tool.
+Rather, it is a collection of whatever topic, code, examples, ideas, etc.
+
+The idea is that we have any set of directories and sub-directories, and we simply walk the files to build the “website”.
+Maybe, in the future, having a adocwiki.yaml could be considered to allow users to order the sidebar of the website to show things in the order they want, but that is not the initial goal.
